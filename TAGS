@@ -1,0 +1,731 @@
+
+minilibx_macos/mlx_int_str_to_wordtab.c,120
+int	mlx_int_str_str(9,77
+int	mlx_int_str_str_cote(35,433
+char	**mlx_int_str_to_wordtab(mlx_int_str_to_wordtab67,862
+
+minilibx_macos/mlx.h,22
+#define	MLX_H47,1288
+
+minilibx_macos/mlx_xpm.c,622
+typedef struct  s_xpm_col13,187
+  int           name;15,215
+  int           col;16,237
+} t_xpm_col;17,258
+struct  s_col_name20,273
+  char  *name;name22,294
+  int   color;23,309
+#define	RETURN	30,394
+char	*mlx_int_get_line(mlx_int_get_line38,610
+char	*mlx_int_static_line(mlx_int_static_line57,1011
+int	mlx_int_get_col_name(79,1402
+int	mlx_int_get_text_rgb(89,1552
+void	mlx_int_xpm_set_pixel(112,1937
+void	*mlx_int_parse_xpm(mlx_int_parse_xpm132,2296
+void	mlx_int_file_get_rid_comment(284,5610
+void	*mlx_xpm_file_to_image(mlx_xpm_file_to_image302,6086
+void	*mlx_xpm_to_image(mlx_xpm_to_image328,6691
+
+minilibx_macos/mlx_shaders.c,143
+void display_log(10,125
+int mlx_shaders_pixel(23,414
+int mlx_shaders_image(88,2344
+int mlx_shaders_font(160,4421
+int mlx_shaders(233,6598
+
+minilibx_macos/mlx_rgb.c,50
+struct s_col_name mlx_col_name[mlx_col_name7,96
+
+minilibx_macos/font.c,165
+  unsigned int 	 width;4,68
+  unsigned int 	 height;5,92
+  unsigned int 	 bytes_per_pixel;6,117
+  unsigned char	 pixel_data[pixel_data7,181
+} font_atlas 8,229
+
+minilibx_macos/mlx_int.h,2061
+#define	MAX_EVENT	10,100
+#define MAX_PIXEL_NB	11,121
+#define UNIQ_BPP	12,149
+#define FONT_WIDTH	14,169
+#define	FONT_HEIGHT	15,191
+typedef int (*func_t)func_t18,216
+typedef struct	glsl_info_s22,257
+  GLuint	pixel_vshader;24,286
+  GLuint	pixel_fshader;25,310
+  GLuint	pixel_program;26,334
+  GLint		loc_pixel_position;27,358
+  GLint		loc_pixel_texture;28,387
+  GLint		loc_pixel_winhalfsize;29,415
+  GLuint	image_vshader;31,448
+  GLuint	image_fshader;32,472
+  GLuint	image_program;33,496
+  GLint		loc_image_position;34,520
+  GLint		loc_image_winhalfsize;35,549
+  GLint		loc_image_texture;36,581
+  GLint		loc_image_pos;37,609
+  GLint		loc_image_size;38,633
+  GLuint	font_vshader;40,659
+  GLuint	font_fshader;41,682
+  GLuint	font_program;42,705
+  GLint		loc_font_position;43,728
+  GLint		loc_font_winhalfsize;44,756
+  GLint		loc_font_texture;45,787
+  GLint		loc_font_color;46,814
+  GLint		loc_font_posinwin;47,839
+  GLint		loc_font_posinatlas;48,867
+  GLint		loc_font_atlassize;49,897
+} glsl_info_t;50,926
+typedef struct	mlx_img_list_s53,943
+  int			width;55,975
+  int			height;56,990
+  char			*buffer;buffer57,1006
+  GLfloat		vertexes[vertexes58,1024
+  struct mlx_img_list_s	*next;next59,1048
+} mlx_img_list_t;60,1079
+typedef struct	mlx_img_ctx_s63,1099
+  GLuint		texture;65,1130
+  GLuint		vbuffer;66,1149
+  mlx_img_list_t	*img;img67,1168
+  struct mlx_img_ctx_s	*next;next68,1191
+} mlx_img_ctx_t;69,1221
+typedef struct	mlx_win_list_s71,1239
+  void			*winid;winid73,1271
+  mlx_img_ctx_t		*img_list;img_list74,1288
+  int			nb_flush;75,1316
+  int			pixmgt;76,1334
+  struct mlx_win_list_s	*next;next77,1350
+} mlx_win_list_t;78,1381
+typedef struct		mlx_ptr_s81,1401
+  void			*appid;appid83,1429
+  mlx_win_list_t	*win_list;win_list84,1446
+  mlx_img_list_t	*img_list;img_list85,1474
+  void			(*loop_hook)loop_hook86,1502
+  void			*loop_hook_data;loop_hook_data87,1533
+  void			*loop_timer;loop_timer88,1559
+  mlx_img_list_t	*font;font89,1581
+  int			main_loop_active;90,1605
+} mlx_ptr_t;91,1631
+
+minilibx_macos/mlx_new_window.h,59
+@interface NSWindowEvent 12,144
+@interface MlxWin 29,667
+
+src/main.c,15
+int main(3,20
+
+libft/ft_strrchr.c,36
+char	*ft_strrchr(ft_strrchr15,912
+
+libft/ft_putstr.c,24
+void		ft_putstr(15,912
+
+libft/ft_strcmp.c,23
+int		ft_strcmp(13,892
+
+libft/pf_print_pointer.c,33
+int					pf_print_pointer(15,916
+
+libft/ft_strlcat.c,27
+size_t		ft_strlcat(15,912
+
+libft/pf_print_int.c,65
+static int	pf_print_int_meat(15,916
+int			pf_print_int(30,1366
+
+libft/ft_memcpy.c,34
+void	*ft_memcpy(ft_memcpy15,912
+
+libft/ft_putnstr_fd.c,27
+int		ft_putnstr_fd(15,912
+
+libft/stack.c,180
+struct s_stack	*ft_stackinit(ft_stackinit15,912
+void			*ft_pop(ft_pop25,1090
+void			ft_push(39,1316
+void			*ft_stackpeek(ft_stackpeek52,1563
+int				ft_stackisempty(59,1688
+
+libft/ft_memmove.c,36
+void	*ft_memmove(ft_memmove15,912
+
+libft/ft_strsplit.c,41
+char			**ft_strsplit(ft_strsplit15,912
+
+libft/ft_lstadd_tail.c,28
+void	ft_lstadd_tail(15,912
+
+libft/ft_strcspn.c,27
+size_t		ft_strcspn(15,912
+
+libft/ft_strncpy.c,36
+char	*ft_strncpy(ft_strncpy15,912
+
+libft/ft_memrealloc.c,44
+void		*ft_memrealloc(ft_memrealloc21,1086
+
+libft/ft_putflt_fd.c,27
+void		ft_putflt_fd(15,912
+
+libft/ft_lstmap.c,37
+t_list		*ft_lstmap(ft_lstmap15,912
+
+libft/ft_atoibase.c,26
+int			ft_atoibase(15,912
+
+libft/ft_lstadd.c,24
+void		ft_lstadd(15,912
+
+libft/ft_printf.c,99
+int		g_printf_fd 16,935
+int		ft_vdprintf(18,958
+int		ft_printf(40,1375
+int		ft_dprintf(51,1518
+
+libft/ft_striter.c,25
+void		ft_striter(13,892
+
+libft/pf_disp.c,92
+static const t_fun_ptr g_get_function[g_get_function15,916
+int		pf_dispatch_func(35,1357
+
+libft/ft_strstr.c,34
+char	*ft_strstr(ft_strstr15,912
+
+libft/ft_isdigit.c,24
+int		ft_isdigit(13,892
+
+libft/ft_putnbr.c,24
+void		ft_putnbr(15,912
+
+libft/ft_memccpy.c,37
+void		*ft_memccpy(ft_memccpy15,912
+
+libft/ft_putendl_fd_2.c,29
+int		ft_putendl_fd_2(15,912
+
+libft/ft_strspn.c,26
+size_t		ft_strspn(15,912
+
+libft/ft_size_ttoabase.c,49
+char		*ft_size_ttoabase(ft_size_ttoabase15,912
+
+libft/ft_strdel.c,24
+void		ft_strdel(15,912
+
+libft/ft_strchri.c,24
+int		ft_strchri(13,892
+
+libft/ft_putstr_fd_2.c,28
+int		ft_putstr_fd_2(15,912
+
+libft/ft_putdbl.c,24
+void		ft_putdbl(15,912
+
+libft/ft_exit.c,22
+void		ft_exit(15,912
+
+libft/ft_memchr.c,35
+void		*ft_memchr(ft_memchr15,912
+
+libft/ft_strrealloc.c,43
+char		*ft_strrealloc(ft_strrealloc15,912
+
+libft/ft_bzero.c,23
+void		ft_bzero(15,912
+
+libft/ft_vectscalarmult.c,53
+t_vect3	*ft_vectscalarmult(ft_vectscalarmult15,912
+
+libft/ft_putdbl_fd.c,27
+void		ft_putdbl_fd(15,912
+
+libft/pf_print_percent.c,33
+int					pf_print_percent(15,916
+
+libft/ft_putchar_fd_2.c,29
+int		ft_putchar_fd_2(15,912
+
+libft/pf_parse_input.c,132
+int					pf_get_min_field(26,1258
+int					pf_get_precision(45,1693
+static int			add_mod(54,1855
+int					pf_find_modifier(83,2354
+
+libft/ft_putwchar_fd.c,28
+int		ft_putwchar_fd(15,912
+
+libft/ft_putdbl_fd_2.c,28
+int		ft_putdbl_fd_2(15,912
+
+libft/ft_isalnum.c,24
+int		ft_isalnum(15,912
+
+libft/ft_putstr_fd.c,27
+void		ft_putstr_fd(15,912
+
+libft/pf_find_colors.c,107
+char		*g_pf_colors[g_pf_colors15,916
+char		*g_pf_codes[g_pf_codes33,1106
+int			pf_find_colors(50,1247
+
+libft/ft_wstrlen.c,26
+size_t	ft_wstrlen(15,912
+
+libft/pf_find_options.c,65
+static int			add_option(15,916
+int					pf_find_options(39,1447
+
+libft/ft_vectnew.c,39
+t_vect3	*ft_vectnew(ft_vectnew15,912
+
+libft/ft_lstiter.c,25
+void		ft_lstiter(15,912
+
+libft/ft_lstrev.c,24
+void		ft_lstrev(15,912
+
+libft/ft_lstdelone.c,27
+void		ft_lstdelone(15,912
+
+libft/ft_toupper.c,24
+int		ft_toupper(13,892
+
+libft/ft_strcpy.c,34
+char	*ft_strcpy(ft_strcpy13,892
+
+libft/ft_strndup.c,37
+char		*ft_strndup(ft_strndup15,912
+
+libft/ft_lstnew.c,37
+t_list		*ft_lstnew(ft_lstnew15,912
+
+libft/ft_wordnum.c,26
+size_t	ft_wordnum(15,912
+
+libft/ft_strdup.c,34
+char	*ft_strdup(ft_strdup15,912
+
+libft/ft_putnbr_fd.c,27
+void		ft_putnbr_fd(15,912
+
+libft/ft_striteri.c,26
+void		ft_striteri(13,892
+
+libft/pf_print_hex.c,67
+static int		pf_print_hex_meat(19,974
+int				pf_print_hex(42,1778
+
+libft/ft_strmap.c,35
+char		*ft_strmap(ft_strmap15,912
+
+libft/ft_strrev.c,35
+char		*ft_strrev(ft_strrev15,912
+
+libft/ft_putendl_fd.c,28
+void		ft_putendl_fd(15,912
+
+libft/pf_print_padding.c,199
+size_t			pf_extract_va_arg_signed(19,966
+size_t			pf_extract_va_arg_unsigned(37,1539
+int				pf_print_min_field_width(59,2245
+int				pf_print_zeroes(78,2730
+int				pf_print_int_precision(94,2964
+
+libft/ft_isin.c,21
+int		ft_isin(17,971
+
+libft/ft_memdel.c,24
+void		ft_memdel(15,912
+
+libft/ft_strnstr.c,36
+char	*ft_strnstr(ft_strnstr15,912
+
+libft/ft_putchar.c,25
+void		ft_putchar(15,912
+
+libft/ft_isascii.c,24
+int		ft_isascii(13,892
+
+libft/ft_strlen.c,253
+# define STRLEN_MASK01 16,934
+# define STRLEN_MASK80 17,968
+# define STRLEN_MAX_CHECK 18,1002
+# define STRLEN_MASK01 20,1054
+# define STRLEN_MASK80 21,1098
+# define STRLEN_MAX_CHECK 22,1142
+#define LONGPTR_MASK 25,1178
+size_t		ft_strlen(27,1219
+
+libft/ft_isprime.c,25
+int			ft_isprime(15,912
+
+libft/ft_strsub.c,35
+char		*ft_strsub(ft_strsub15,912
+
+libft/ft_strnew.c,35
+char		*ft_strnew(ft_strnew15,912
+
+libft/queue.c,191
+struct s_queue	*ft_queueinit(ft_queueinit15,912
+void			ft_enqueue(26,1110
+void			*ft_dequeue(ft_dequeue50,1538
+void			*ft_queuepeek(ft_queuepeek70,1858
+int				ft_queueisempty(79,2007
+
+libft/ft_vectsubtract.c,49
+t_vect3	*ft_vectsubtract(ft_vectsubtract15,912
+
+libft/ft_free_str_tab.c,27
+void		free_str_tab(15,912
+
+libft/ft_memalloc.c,39
+void		*ft_memalloc(ft_memalloc15,912
+
+libft/pf_print_str_char.c,173
+int					pf_print_wide_char(15,916
+int					pf_print_skinny_char(32,1346
+int					pf_print_char(49,1760
+int					pf_print_wchar_str(57,2006
+int					pf_print_string(83,2772
+
+libft/ft_putendl.c,25
+void		ft_putendl(15,912
+
+libft/ft_strncat.c,36
+char	*ft_strncat(ft_strncat15,912
+
+libft/ft_itoa.c,31
+char		*ft_itoa(ft_itoa15,912
+
+libft/ft_round.c,25
+double		ft_round(19,959
+
+libft/pf_print_oct.c,69
+static int			pf_print_oct_meat(15,916
+int					pf_print_oct(37,1716
+
+libft/ft_putnstr.c,24
+int		ft_putnstr(15,912
+
+libft/ft_vectadd.c,39
+t_vect3	*ft_vectadd(ft_vectadd15,912
+
+libft/ft_putcstr_fd.c,27
+int		ft_putcstr_fd(15,912
+
+libft/pf_print_unsigned.c,34
+int					pf_print_unsigned(15,916
+
+libft/ft_strncmp.c,24
+int		ft_strncmp(15,912
+
+libft/ft_itoabase.c,39
+char		*ft_itoabase(ft_itoabase15,912
+
+libft/ft_strlcpy.c,26
+size_t	ft_strlcpy(15,912
+
+libft/ft_sqrt.c,24
+double		ft_sqrt(15,912
+
+libft/ft_memcmp.c,23
+int		ft_memcmp(15,912
+
+libft/ft_numpair.c,28
+uint64_t	ft_numpair(15,912
+
+libft/ft_strtrim.c,37
+char		*ft_strtrim(ft_strtrim15,912
+
+libft/ft_strequ.c,23
+int		ft_strequ(13,892
+
+libft/ft_putnbr_base_2.c,30
+int		ft_putnbr_base_2(15,912
+
+libft/ft_putchar_fd.c,28
+void		ft_putchar_fd(15,912
+
+libft/get_next_line.c,134
+static void			gnl_loop(15,912
+static size_t		gnl_find_i(40,1371
+static size_t		gnl_find_len(53,1563
+int					get_next_line(63,1728
+
+libft/ft_memset.c,34
+void	*ft_memset(ft_memset15,912
+
+libft/ft_floor.c,22
+int		ft_floor(13,892
+
+libft/ft_isalpha.c,24
+int		ft_isalpha(13,892
+
+libft/ft_strcat.c,34
+char	*ft_strcat(ft_strcat13,892
+
+libft/ft_tolower.c,24
+int		ft_tolower(13,892
+
+libft/ft_putwstr.c,27
+int		ft_putwstr_fd(15,912
+
+libft/ft_atosize_tbase.c,34
+size_t			ft_atosize_tbase(15,912
+
+libft/ft_strnequ.c,24
+int		ft_strnequ(15,912
+
+libft/ft_strjoin.c,37
+char		*ft_strjoin(ft_strjoin15,912
+
+libft/ft_atoi.c,48
+static int	check(15,912
+int			ft_atoi(25,1125
+
+libft/includes/libft.h,3844
+# define LIBFT_H14,908
+# define FT_FD_MAX 25,1034
+# define BUFF_SIZE 26,1057
+# define RET_IF(28,1082
+# define RET_NONE(29,1132
+# define NULL_CHECK(30,1173
+# define DO_IF(31,1217
+# define DO_ALL(32,1261
+# define WHILE_DO(33,1310
+# define ELSE_DO(34,1360
+# define IF_ELSE(35,1395
+# define MIN(37,1452
+# define MAX(38,1487
+# define ABS(39,1522
+# define CEIL(40,1555
+# define FLOOR(41,1628
+# define ABS_I(43,1703
+# define MAX_I(44,1749
+# define MIN_I(45,1811
+# define LETTER_POS(46,1873
+# define ISBLANK(48,1908
+# define ISWHITE(49,1952
+# define ISWHITE2(50,2009
+# define TODIGIT(52,2083
+# define TOCHAR(53,2115
+# define ISALPHA(59,2171
+# define ISDIGIT(60,2242
+# define ISALNUM(61,2285
+# define ISASCII(62,2332
+# define ISPRINT(63,2374
+# define TOUPPER(64,2418
+# define TOLOWER(65,2477
+# define FT_CHAR_BIT 71,2610
+# define FT_UCHAR_MAX 73,2634
+# define FT_SCHAR_MAX 74,2660
+# define FT_SCHAR_MIN 75,2686
+# define FT_CHAR_MAX 76,2715
+# define FT_CHAR_MIN 77,2770
+# define FT_USHRT_MAX 79,2824
+# define FT_SHRT_MAX 80,2874
+# define FT_SHRT_MIN 81,2930
+# define FT_UINT_MAX 83,2984
+# define FT_INT_MAX 84,3026
+# define FT_INT_MIN 85,3064
+# define FT_ULONG_MAX 87,3102
+# define FT_LONG_MAX 88,3146
+# define FT_LONG_MIN 89,3186
+# define FT_ULLONG_MAX 91,3226
+# define FT_LLONG_MAX 92,3276
+# define FT_LLONG_MIN 93,3318
+# define FT_UINTMAX_MAX 95,3360
+# define FT_INTMAX_MAX 96,3402
+# define FT_INTMAX_MIN 97,3446
+# define FT_SIZE_T_MAX 99,3490
+# define FT_SSIZE_T_MAX 100,3528
+# define FT_SSIZE_T_MIN 101,3572
+#  define FT_LONG_BIT 104,3635
+#  define FT_LONG_BIT 106,3667
+# define FT_STDIN_FILENO 109,3701
+# define FT_STDOUT_FILENO 110,3728
+# define FT_STDERR_FILENO 111,3756
+# define TE(121,3835
+# define TE_BOL 123,3860
+# define TE_DIM 124,3886
+# define TE_UND 125,3912
+# define TE_BLN 126,3938
+# define TE_HID 127,3964
+# define TE_INV 128,3990
+# define TE_RST_ALL 129,4016
+# define TE_RST_BLD 130,4046
+# define TE_RST_DIM 131,4077
+# define TE_RST_UND 132,4108
+# define TE_RST_BLN 133,4139
+# define TE_RST_INV 134,4170
+# define TE_RST_HID 135,4201
+# define FG(141,4254
+# define FG_BLK 143,4279
+# define FG_RED 144,4306
+# define FG_GRN 145,4333
+# define FG_YLW 146,4360
+# define FG_BLU 147,4387
+# define FG_MGN 148,4414
+# define FG_CYN 149,4441
+# define FG_GRY 150,4468
+# define FG_WHT 151,4495
+# define FG_LGRY 152,4522
+# define FG_DGRY 153,4550
+# define FG_LRED 154,4578
+# define FG_LGRN 155,4606
+# define FG_LYLW 156,4634
+# define FG_LBLU 157,4662
+# define FG_LMGN 158,4690
+# define FG_LCYN 159,4718
+# define FG_DFT 160,4746
+# define BG(166,4795
+# define BG_BLK 168,4820
+# define BG_RED 169,4847
+# define BG_GRN 170,4874
+# define BG_YLW 171,4901
+# define BG_BLU 172,4928
+# define BG_MGN 173,4955
+# define BG_CYN 174,4982
+# define BG_GRY 175,5009
+# define BG_LGRY 176,5036
+# define BG_DGRY 177,5064
+# define BG_LRED 178,5093
+# define BG_LGRN 179,5122
+# define BG_LYLW 180,5151
+# define BG_LBLU 181,5180
+# define BG_LMGN 182,5209
+# define BG_LCYN 183,5238
+# define BG_WHT 184,5267
+# define BG_DFT 185,5295
+# define NC 187,5323
+typedef struct	s_list256,7666
+	void			*content;content258,7690
+	size_t			content_size;259,7708
+	struct s_list	*next;next260,7732
+}				t_list;261,7754
+typedef struct	s_vect3347,10688
+	double	x;349,10713
+	double	y;350,10724
+	double	z;351,10735
+}				t_vect3;352,10746
+typedef double	t_mtx4[t_mtx4354,10761
+struct			s_node 365,11012
+	void			*content;content366,11030
+	struct s_node	*next;next367,11048
+struct			s_queue 370,11074
+	struct s_node	*first;first371,11093
+	struct s_node	*last;last372,11116
+typedef struct s_node	t_node;375,11142
+typedef struct s_queue	t_queue;376,11172
+struct			s_stack 388,11450
+	struct s_node	*top;top389,11469
+typedef struct s_stack	t_stack;392,11494
+
+libft/includes/ft_printf.h,1150
+# define FT_PRINTF_H14,912
+# define RECOGNIZED 16,934
+# define CONVERSIONS 17,993
+# define CONVS 18,1033
+# define MODIFIERS 19,1060
+# define MODS 20,1086
+# define PF_FD 22,1111
+# define MFW 27,1181
+# define PREC 28,1215
+# define ALT 30,1245
+# define ZERO 31,1260
+# define NEG_FIELD 32,1276
+# define SPACE 33,1297
+# define SIGNED 34,1314
+# define PRINTF_CHAR 36,1334
+# define PRINTF_SHORT 37,1357
+# define PRINTF_LONG 38,1381
+# define PRINTF_LONGLONG 39,1404
+# define PRINTF_INTMAX_T 40,1431
+# define PRINTF_SIZE_T 41,1459
+# define IS_ALT(43,1486
+# define IS_ZERO(44,1521
+# define IS_NEG_FIELD(45,1558
+# define IS_SPACE(46,1605
+# define IS_SIGNED(47,1644
+# define IS_CHAR(49,1686
+# define IS_SHORT(50,1730
+# define IS_LONG(51,1776
+# define IS_LONGLONG(52,1820
+# define IS_INTMAX_T(53,1872
+# define IS_SIZE_T(54,1924
+typedef struct		s_pf_info68,2238
+	char		*str;str70,2266
+	int			options;71,2279
+	int			mod;72,2295
+	int			min_field_width;73,2307
+	int			precision;74,2331
+	int			prec_spec;75,2349
+	int			len;76,2367
+	size_t		len_str;77,2379
+}					t_pf_info;78,2397
+typedef int			(*t_fun_ptr)t_fun_ptr114,3805
+
+libft/ft_strclr.c,24
+void		ft_strclr(15,912
+
+libft/ft_ceil.c,21
+int		ft_ceil(15,912
+
+libft/ft_wcharlen.c,25
+int		ft_wcharlen(15,912
+
+libft/ft_snumlen.c,26
+size_t	ft_snumlen(19,981
+
+libft/ft_putflt.c,24
+void		ft_putflt(15,912
+
+libft/ft_reduce.c,24
+int		ft_reduce(21,1088
+
+libft/ft_putnwstr.c,28
+int		ft_putnwstr_fd(15,912
+
+libft/ft_strmapi.c,37
+char		*ft_strmapi(ft_strmapi15,912
+
+libft/ft_ssize_ttoabase.c,51
+char		*ft_ssize_ttoabase(ft_ssize_ttoabase15,912
+
+libft/ft_numunpair.c,26
+void	ft_numunpair(15,912
+
+libft/ft_putflt_fd_2.c,28
+int		ft_putflt_fd_2(15,912
+
+libft/pf_print_bin.c,69
+static int			pf_print_bin_meat(15,916
+int					pf_print_bin(38,1677
+
+libft/ft_isprint.c,24
+int		ft_isprint(13,892
+
+libft/ft_lstdel.c,24
+void		ft_lstdel(15,912
+
+libft/ft_swap.c,22
+void		ft_swap(13,892
+
+libft/ft_abs.c,23
+double		ft_abs(13,892
+
+libft/ft_wordlen.c,26
+size_t	ft_wordlen(15,912
+
+libft/ft_strchr.c,34
+char	*ft_strchr(ft_strchr15,912
+
+libft/ft_putrstr_fd.c,28
+int			ft_putrstr_fd(15,912
+
+libft/ft_putnbr_fd_2.c,28
+int		ft_putnbr_fd_2(15,912
+
+libft/ft_unumlen.c,27
+size_t		ft_unumlen(19,977
