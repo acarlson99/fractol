@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/21 19:40:13 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/21 22:53:21 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,17 @@ t_fnptr			g_funcs[] =
 	NULL,
 };
 
-int			main(int argc, char **argv)
+int			main(int argc, char **argv)	// TODO: project
 {
 	t_fract			*f;
 
 	RET_IF(argc > 5, !!ft_dprintf(FT_STDERR_FILENO, USGMSG));
 	f = get_cmd(argc, argv);
-	ft_printf("height %u width %u type %u arg %u\n", f->height, f->width, f->type, f->arg);
+	if(!(f->mlx_ptr = mlx_init()))
+		exit(1);
+	if (!(f->win_ptr = mlx_new_window(f->mlx_ptr, f->windowwidth,
+									f->windowheight, "fractol")))
+		exit(1);
+	ft_printf("windowheight %u windowwidth %u type %u arg %u\n", f->windowheight, f->windowwidth, f->type, f->arg);
+	mlx_loop(f->mlx_ptr);
 }

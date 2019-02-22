@@ -6,7 +6,7 @@
 #    By: acarlson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/20 16:18:37 by acarlson          #+#    #+#              #
-#    Updated: 2019/02/21 19:40:34 by acarlson         ###   ########.fr        #
+#    Updated: 2019/02/21 22:10:19 by acarlson         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,7 +17,7 @@ DFLAGS = -Wall -Wextra -g
 OBJDIR = .obj/
 INCLUDES = -I includes/ -I libft/includes/ -I minilibx_macos/
 FRAMEWORKS = -framework OpenGL -framework AppKit
-FILES = main parse mandelbrot julia ship sierpinski buddha lyapunov
+FILES = main parse struct mandelbrot julia ship sierpinski buddha lyapunov
 CFILES = $(addsuffix .c, $(FILES))
 OFILES = $(addprefix $(OBJDIR), $(addsuffix .o, $(FILES)))
 LIBS = -L libft/ -lft -L minilibx_macos/ -lmlx
@@ -36,7 +36,7 @@ all: $(NAME)
 $(NAME): $(OBJDIR) $(OFILES)
 	@make -C libft/
 	@make -C minilibx_macos/
-	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBS) $(OFILES) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(FRAMEWORKS) $(LIBS) $(OFILES) -o $(NAME)
 	@echo "  $(CL_WHITE)+ $(NAME) : Compiled $(CL_GREEN)$@$(CL_WHITE)"
 
 clean:
@@ -82,9 +82,12 @@ tags:
 j:
 	@make -C libft/
 	@make -C minilibx_macos/
-	$(CC) $(DFLAGS) $(INCLUDES) $(LIBS) $(addprefix $(SRC), $(CFILES)) -o $(DNAME)
+	$(CC) $(DFLAGS) $(INCLUDES) $(FRAMEWORKS) $(LIBS) $(addprefix $(SRC), $(CFILES)) -o $(DNAME)
 
 k: fclean
 	rm -f $(DNAME)
 	rm -rf *.dSYM
 	rm -f TAGS
+
+fsan:
+	$(CC) $(DFLAGS) $(INCLUDES) $(FRAMEWORKS) $(LIBS) $(addprefix $(SRC), $(CFILES)) -o $(DNAME) -fsanitize=address

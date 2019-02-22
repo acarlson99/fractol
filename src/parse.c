@@ -6,31 +6,11 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:39:57 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/21 19:40:12 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/21 22:11:55 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-static unsigned int			ft_pedantic_atoi(const char *str)
-{
-	unsigned int				n;
-
-	n = 0;
-	while ((*str >= 9 && *str <= 13) || *str == 32)
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		n = n * 10 + (unsigned char)*str - '0';
-		str++;
-	}
-	if (!!*str)
-	{
-		ft_dprintf(FT_STDERR_FILENO, "Invalid option: %c\n", *str);
-		exit(1);
-	}
-	return (n);
-}
 
 static unsigned int			print_types(void)
 {
@@ -46,17 +26,61 @@ static unsigned int			print_types(void)
 	exit(1);
 }
 
+static unsigned int			get_num_arg(char *s)
+{
+	unsigned		n;
+	int				m;
+
+	n = 0;
+	m = 0;
+	while (*s >= '0' && *s <= '9')
+	{
+		n = n * 10 + *s++ - '0';
+		m |= 1;
+	}
+	if (*s || !m)
+		exit(!!ft_dprintf(FT_STDERR_FILENO, "That's not a number, silly\n"));
+	return (n);
+}
+
+static unsigned int			get_type_arg(char *s)
+{
+	unsigned		i;
+
+	i = 0;
+	DO_IF(g_fracts[i], WHILE_DO(g_fracts[i] && (ft_strcmp(g_fracts[i], s)),
+								++i));
+	return (!g_fracts[i] ? print_types() : i);
+}
+
+static void					check_args(t_fract *f)
+{
+	if (f->windowwidth > WDMAX || f->windowheight > HTMAX || f->arg > 100)
+		exit(!!ft_dprintf(FT_STDERR_FILENO,
+						"OwO senpai that's way too big!\n"));
+}
+
 t_fract		*get_cmd(int argc, char **argv)
 {
 	t_fract		*f;
-	unsigned	i;
+	int			i;
+	int			j;
 
 	i = 0;
+	j = 0;
 	DO_IF(!(f = (t_fract *)ft_memalloc(sizeof(t_fract))), exit(1));
-	f->height = argc > 1 ? ft_pedantic_atoi(argv[1]) : 1500;
-	f->width = argc > 2 ? ft_pedantic_atoi(argv[1]) : 1500;
-	DO_IF(argc > 3, WHILE_DO(g_fracts[i] && (strcmp(g_fracts[i], argv[3])), ++i));
-	f->arg = argc > 4 ? ft_pedantic_atoi(argv[4]) : 0;
-	f->type = !g_fracts[i] ? print_types() : i;
+	while (++i < argc)
+	{
+		if (!ft_strncmp(argv[i], "w=", 2))
+			f->windowwidth = get_num_arg(&argv[i][2]);
+		else if (!ft_strncmp(argv[i], "h=", 2))
+			f->windowheight = get_num_arg(&argv[i][2]);
+		else if (!ft_strncmp(argv[i], "a=", 2))
+			f->arg = get_num_arg(&argv[i][2]);
+		else if (!ft_strncmp(argv[i], "t=", 2))
+			f->type = get_type_arg(&argv[i][2]);
+		ELSE_DO(exit(!!ft_dprintf(FT_STDERR_FILENO, USGMSG)));
+	}
+	check_args(f);
 	return (f);
 }
