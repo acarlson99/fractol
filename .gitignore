@@ -69,3 +69,7 @@ cmake-build-*/
 
 # VSCode
 .vscode/*
+
+fractol
+d_fractol
+TAGS
