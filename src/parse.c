@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:39:57 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/21 22:11:55 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/22 15:46:36 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_fract		*get_cmd(int argc, char **argv)
 	i = 0;
 	j = 0;
 	DO_IF(!(f = (t_fract *)ft_memalloc(sizeof(t_fract))), exit(1));
+	init_struct(f);
 	while (++i < argc)
 	{
 		if (!ft_strncmp(argv[i], "w=", 2))
