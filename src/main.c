@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/22 23:38:25 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 00:55:28 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,20 @@ int			key_func(int key, t_fract *f)
 int			fract_loop(t_fract *f)
 {
 	int			i;
+	// void		**args;
 
 	i = 0;
 	while (i < f->windowwidth * f->windowheight * (f->bits_per_pixel / 8))
 		f->img[i++] = 0;
-	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->mlx_image, 0, 0);
+	i = 0;
+	while (i < NUMBANDS)
+	{
+		g_funcs[f->type](f, (f->windowwidth / NUMBANDS) * i,
+						(f->windowwidth / NUMBANDS) * (i + 1));
+		++i;
+	}
 	// TODO: calculate fractal
+	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->mlx_image, 0, 0);
 	return (0);
 }
 

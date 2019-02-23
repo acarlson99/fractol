@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/22 22:38:46 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 00:32:05 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 
 # include <math.h>
+# include <pthread.h>
 # include "mlx.h"
 # include "libft.h"
 
@@ -22,7 +23,7 @@
 # define WDMAX 10000
 # define DEFAULTHEIGHT 1000
 # define DEFAULTWIDTH 1000
-# define THREADBANDWIDTH 250
+# define NUMBANDS 4
 
 # define MAXKEYS 300
 
@@ -75,7 +76,7 @@ void		exit_prog(t_fract *f);
 ** Fractal calculations
 */
 
-void					*calc_mandelbrot(t_fract *f);
+void					*calc_mandelbrot(t_fract *f, int start_y, int end_y);
 void					*calc_julia(t_fract *f);
 void					*calc_ship(t_fract *f);
 void					*calc_sierpinski(t_fract *f);
