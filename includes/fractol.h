@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/22 16:43:22 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/22 22:38:46 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct			s_fract
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*mlx_image;
+	char			*img;
 
 	int				windowheight;
 	int				windowwidth;
@@ -42,6 +43,10 @@ typedef struct			s_fract
 	long double		max_x;
 	long double		max_y;
 
+	int				bits_per_pixel;
+	int				size_line;
+	int				endian;
+
 	int				update;
 }						t_fract;
 
@@ -52,8 +57,8 @@ typedef void		(*t_kfun)();
 ** Dispatch tables
 */
 
-extern const t_fnptr	g_funcs[];
 extern const char		*g_fracts[];
+extern const t_fnptr	g_funcs[];
 extern const t_kfun		g_keycmds[MAXKEYS];
 
 t_fract					*get_cmd(int argc, char **argv);

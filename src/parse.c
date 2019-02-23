@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:39:57 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/22 15:46:36 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/22 23:33:34 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void					check_args(t_fract *f)
 						"OwO senpai that's way too big!\n"));
 }
 
-t_fract		*get_cmd(int argc, char **argv)
+t_fract						*get_cmd(int argc, char **argv)
 {
 	t_fract		*f;
 	int			i;
