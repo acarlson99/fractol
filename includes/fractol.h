@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 17:03:45 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 19:25:27 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define USGMSG "usage: ./fractol [athw]=arg\n"
+# define USGMSG "usage: ./fractol [at]=arg\n"
 # define HTMAX 10000
 # define WDMAX 10000
 # define DEFAULTHEIGHT 1000
@@ -55,6 +55,10 @@ typedef struct			s_fract
 
 	int				windowheight;
 	int				windowwidth;
+	int				center_x;
+	int				center_y;
+	double			zoom;
+
 	unsigned		type;
 	unsigned		arg;
 
@@ -102,6 +106,7 @@ t_fract					*get_cmd(int argc, char **argv);
 
 void					init_struct(t_fract *f);
 void					*make_thread_arg(t_fract *f, int start_y, int end_y);
+t_vect3					*scale_point(t_fract *f, int x, int y);
 
 /*
 ** Key functions

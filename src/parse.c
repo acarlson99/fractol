@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:39:57 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/22 23:33:34 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 18:34:29 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,7 @@ t_fract						*get_cmd(int argc, char **argv)
 	init_struct(f);
 	while (++i < argc)
 	{
-		if (!ft_strncmp(argv[i], "w=", 2))
-			f->windowwidth = get_num_arg(&argv[i][2]);
-		else if (!ft_strncmp(argv[i], "h=", 2))
-			f->windowheight = get_num_arg(&argv[i][2]);
-		else if (!ft_strncmp(argv[i], "a=", 2))
+		if (!ft_strncmp(argv[i], "a=", 2))
 			f->arg = get_num_arg(&argv[i][2]);
 		else if (!ft_strncmp(argv[i], "t=", 2))
 			f->type = get_type_arg(&argv[i][2]);
