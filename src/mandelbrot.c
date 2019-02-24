@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:22:26 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 16:37:31 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 16:45:57 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	calc_point(long double real, long double imag, unsigned iters)
 	char blue = 0;
 	for (; iters; iters--)
 	{
-		if (real != imag)
+		if (fabsl(real - imag) > 42)
 			++blue;
 		else
 			++green;

@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 21:14:11 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 15:35:54 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 17:08:57 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			init_struct(t_fract *f)
 	f->windowwidth = DEFAULTWIDTH;
 	f->type = 0;
 	f->arg = 0;
-	f->iters = 10;
+	f->iters = 42;
 	f->update = 0;
 }
 

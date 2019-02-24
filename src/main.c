@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 16:41:03 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 17:05:38 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,11 @@ int			key_func(int key, t_fract *f)
 	return (0);
 }
 
-#define IDX(X, Y, L, BPP) ((Y) * (L)) + ((X) * ((BPP) / 8))
-
 int			fract_loop(t_fract *f)
 {
 	int			i;
 	void		*args[NUMBANDS];
-	pthread_t	this_thread[NUMBANDS];
+	pthread_t	thread_ids[NUMBANDS];
 
 	i = 0;
 	while (i < f->windowwidth * f->windowheight * (f->bits_per_pixel / 8))
@@ -97,12 +95,12 @@ int			fract_loop(t_fract *f)
 								(f->windowwidth / NUMBANDS) * (i + 1));
 		if (i + 1 == NUMBANDS)
 			((t_targ *)args[i])->end_y = f->windowwidth - 1;
-		pthread_create(&this_thread[i], NULL, g_funcs[f->type], args[i]);
+		pthread_create(&thread_ids[i], NULL, g_funcs[f->type], args[i]);
 		++i;
 	}
 	i = 0;
 	while (i < NUMBANDS)
-		pthread_join(this_thread[i++], NULL);
+		pthread_join(thread_ids[i++], NULL);
 	i = 0;
 	while (i < NUMBANDS)
 		free(args[i++]);
