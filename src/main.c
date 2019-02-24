@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 16:12:55 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 16:41:03 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ const t_fnptr				g_funcs[] =
 
 const t_kfun			g_keycmds[MAXKEYS] =
 {
-	[12] = exit_prog,
-	[53] = exit_prog,
+	[KEY_Q] = exit_prog,
+	[KEY_TAB] = change_type,
+	[KEY_ESCAPE] = exit_prog,
+	[KEY_EQUAL] = inc_iters,
+	[KEY_MINUS] = dec_iters,
 };
 
 int			key_func(int key, t_fract *f)
@@ -70,7 +73,6 @@ int			key_func(int key, t_fract *f)
 	if (g_keycmds[key])
 	{
 		g_keycmds[key](f);
-		f->update = 1;
 		return (0);
 	}
 	ft_printf("Unknown key: %d\n", key);

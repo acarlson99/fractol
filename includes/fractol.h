@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 16:14:49 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 16:41:37 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <math.h>
 # include <pthread.h>
+# include "mlx_keys_macos.h"
 # include "mlx.h"
 # include "libft.h"
 
@@ -106,7 +107,10 @@ void					*make_thread_arg(t_fract *f, int start_y, int end_y);
 ** Key functions
 */
 
-void		exit_prog(t_fract *f);
+void					exit_prog(t_fract *f);
+void					change_type(t_fract *f);
+void					inc_iters(t_fract *f);
+void					dec_iters(t_fract *f);
 
 /*
 ** Fractal calculations
