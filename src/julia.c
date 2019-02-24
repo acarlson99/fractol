@@ -6,14 +6,14 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:25:15 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/21 19:30:07 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 14:48:28 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		*calc_julia(t_fract *f)
+void		*calc_julia(t_targ *p)
 {
-	(void)f;
+	ft_printf("julia %d-%d\n", p->start_y, p->end_y);
 	return (NULL);
 }

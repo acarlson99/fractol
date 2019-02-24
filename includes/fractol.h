@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 00:32:05 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 16:14:49 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,24 @@
 
 # define MAXKEYS 300
 
+/*
+** x, y, mlx line length, mlx bits per pixel
+*/
+
+# define IDX(X, Y, L, BPP) ((Y) * (L)) + ((X) * ((BPP) / 8))
+
+/*
+** mlx img, color
+*/
+
+# define PLT(G, C, X, Y, L, BPP) ((*(int32_t *)&G[IDX(X,Y,L,BPP)] = C))
+
+/*
+** red, green, blue, alpha
+*/
+
+# define CLR(R, G, B, A) ((int32_t)((A<<0x18) | (R<<0x10) | (G<<0x8) | (B)))
+
 typedef struct			s_fract
 {
 	void			*mlx_ptr;
@@ -38,6 +56,8 @@ typedef struct			s_fract
 	int				windowwidth;
 	unsigned		type;
 	unsigned		arg;
+
+	unsigned		iters;
 
 	long double		min_x;
 	long double		min_y;
@@ -51,6 +71,13 @@ typedef struct			s_fract
 	int				update;
 }						t_fract;
 
+typedef struct			s_targ
+{
+	t_fract		*f;
+	int			start_y;
+	int			end_y;
+}						t_targ;
+
 typedef void		*(*t_fnptr)();
 typedef void		(*t_kfun)();
 
@@ -62,9 +89,18 @@ extern const char		*g_fracts[];
 extern const t_fnptr	g_funcs[];
 extern const t_kfun		g_keycmds[MAXKEYS];
 
+/*
+** Arg parsing
+*/
+
 t_fract					*get_cmd(int argc, char **argv);
 
+/*
+** Struct manipulation
+*/
+
 void					init_struct(t_fract *f);
+void					*make_thread_arg(t_fract *f, int start_y, int end_y);
 
 /*
 ** Key functions
@@ -76,11 +112,11 @@ void		exit_prog(t_fract *f);
 ** Fractal calculations
 */
 
-void					*calc_mandelbrot(t_fract *f, int start_y, int end_y);
-void					*calc_julia(t_fract *f);
-void					*calc_ship(t_fract *f);
-void					*calc_sierpinski(t_fract *f);
-void					*calc_buddha(t_fract *f);
-void					*calc_lyapunov(t_fract *f);
+void					*calc_mandelbrot(t_targ *p);
+void					*calc_julia(t_targ *p);
+void					*calc_ship(t_targ *p);
+void					*calc_sierpinski(t_targ *p);
+void					*calc_buddha(t_targ *p);
+void					*calc_lyapunov(t_targ *p);
 
 #endif

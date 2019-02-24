@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 00:55:28 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/23 16:12:55 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int			key_func(int key, t_fract *f)
 int			fract_loop(t_fract *f)
 {
 	int			i;
-	// void		**args;
+	void		*args[NUMBANDS];
+	pthread_t	this_thread[NUMBANDS];
 
 	i = 0;
 	while (i < f->windowwidth * f->windowheight * (f->bits_per_pixel / 8))
@@ -90,11 +91,19 @@ int			fract_loop(t_fract *f)
 	i = 0;
 	while (i < NUMBANDS)
 	{
-		g_funcs[f->type](f, (f->windowwidth / NUMBANDS) * i,
-						(f->windowwidth / NUMBANDS) * (i + 1));
+		args[i] = make_thread_arg(f, (f->windowwidth / NUMBANDS) * i,
+								(f->windowwidth / NUMBANDS) * (i + 1));
+		if (i + 1 == NUMBANDS)
+			((t_targ *)args[i])->end_y = f->windowwidth - 1;
+		pthread_create(&this_thread[i], NULL, g_funcs[f->type], args[i]);
 		++i;
 	}
-	// TODO: calculate fractal
+	i = 0;
+	while (i < NUMBANDS)
+		pthread_join(this_thread[i++], NULL);
+	i = 0;
+	while (i < NUMBANDS)
+		free(args[i++]);
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->mlx_image, 0, 0);
 	return (0);
 }
@@ -108,16 +117,16 @@ int			main(int argc, char **argv)
 	if (!(f->mlx_ptr = mlx_init()))
 		exit(1);
 	if (!(f->win_ptr = mlx_new_window(f->mlx_ptr, f->windowwidth,
-										f->windowheight, "fractol")))
+									f->windowheight, "fractol")))
 		exit(1);
 	if (!(f->mlx_image = mlx_new_image(f->mlx_ptr, f->windowwidth,\
-										f->windowheight)))
+									f->windowheight)))
 		exit(1);
 	if (!(f->img = mlx_get_data_addr(f->mlx_image, &f->bits_per_pixel,\
-										&f->size_line, &f->endian)))
+									&f->size_line, &f->endian)))
 		exit(1);
 	ft_printf("windowheight %u windowwidth %u type %u arg %u\n",\
-				f->windowheight, f->windowwidth, f->type, f->arg);
+			f->windowheight, f->windowwidth, f->type, f->arg);
 	mlx_loop_hook(f->mlx_ptr, fract_loop, f);
 	mlx_key_hook(f->win_ptr, key_func, f);
 	mlx_loop(f->mlx_ptr);
