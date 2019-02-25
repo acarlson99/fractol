@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 18:45:49 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 19:05:56 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ void					toggle_text(t_fract *f);
 void					toggle_lock(t_fract *f);
 void					reset_vals(t_fract *f);
 
+int						close_win(t_fract *f);
+
 /*
 ** Mouse functions
 */
@@ -150,6 +152,8 @@ void					reset_vals(t_fract *f);
 int						mouse_func(int b, int x, int y, t_fract *f);
 void					zoom_in(t_fract *f, int b, int x, int y);
 void					zoom_out(t_fract *f, int b, int x, int y);
+
+int						mouse_move(int x, int y, t_fract *f);
 
 /*
 ** Fractal calculations

@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:08:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 18:45:20 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 19:05:51 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,10 @@ void		reset_vals(t_fract *f)
 	f->iters = 42;
 	f->update = 1;
 	f->lock = 0;
+}
+
+int						close_win(t_fract *f)
+{
+	(void)f;
+	exit(0);
 }

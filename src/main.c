@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 18:46:27 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 19:04:47 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,17 @@ static int			fract_loop(t_fract *f)
 	return (0);
 }
 
+static void			add_hooks(t_fract *f)
+{
+	mlx_loop_hook(f->mlx_ptr, fract_loop, f);
+	mlx_hook(f->win_ptr, 2, 0, key_func, f);
+
+	mlx_hook(f->win_ptr, 6, 0, mouse_move, f);
+	mlx_hook(f->win_ptr, 17, 0, close_win, f);
+
+	mlx_mouse_hook(f->win_ptr, mouse_func, f);
+}
+
 int					main(int argc, char **argv)
 {
 	t_fract			*f;
@@ -107,8 +118,6 @@ int					main(int argc, char **argv)
 	if (!(f->img = mlx_get_data_addr(f->mlx_image, &f->bits_per_pixel,\
 								&f->size_line, &f->endian)))
 		exit(1);
-	mlx_loop_hook(f->mlx_ptr, fract_loop, f);
-	mlx_key_hook(f->win_ptr, key_func, f);
-	mlx_mouse_hook(f->win_ptr, mouse_func, f);
+	add_hooks(f);
 	mlx_loop(f->mlx_ptr);
 }
