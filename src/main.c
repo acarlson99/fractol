@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 17:05:38 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 16:13:53 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,7 @@
 ** }
 */
 
-const char					*g_fracts[] =
-{
-	"mandelbrot",
-	"julia",
-	"ship",
-	"sierpinski",
-	"buddha",
-	"lyapunov",
-	NULL,
-};
-
-const t_fnptr				g_funcs[] =
+static const t_fnptr				g_funcs[] =
 {
 	calc_mandelbrot,
 	calc_julia,
@@ -58,45 +47,34 @@ const t_fnptr				g_funcs[] =
 	NULL,
 };
 
-const t_kfun			g_keycmds[MAXKEYS] =
+static void		check_stuff(t_fract *f)
 {
-	[KEY_Q] = exit_prog,
-	[KEY_TAB] = change_type,
-	[KEY_ESCAPE] = exit_prog,
-	[KEY_EQUAL] = inc_iters,
-	[KEY_MINUS] = dec_iters,
-};
-
-int			key_func(int key, t_fract *f)
-{
-	(void)f;
-	if (g_keycmds[key])
-	{
-		g_keycmds[key](f);
-		return (0);
-	}
-	ft_printf("Unknown key: %d\n", key);
-	return (0);
+	int		i;
+	
+	i = 0;
+	while (i < f->windowwidth * f->windowheight * (f->bits_per_pixel / 8))
+		f->img[i++] = 0;
+	if (!g_funcs[f->type])
+		f->type = 0;
 }
 
-int			fract_loop(t_fract *f)
+static int			fract_loop(t_fract *f)
 {
 	int			i;
 	void		*args[NUMBANDS];
 	pthread_t	thread_ids[NUMBANDS];
 
-	i = 0;
-	while (i < f->windowwidth * f->windowheight * (f->bits_per_pixel / 8))
-		f->img[i++] = 0;
-	i = 0;
-	while (i < NUMBANDS)
+	if (!f->update || (f->lock && f->type == Julia))
+		return (0);
+	check_stuff(f);
+	i = -1;
+	while (++i < NUMBANDS)
 	{
 		args[i] = make_thread_arg(f, (f->windowwidth / NUMBANDS) * i,
-								(f->windowwidth / NUMBANDS) * (i + 1));
+								  (f->windowwidth / NUMBANDS) * (i + 1));
 		if (i + 1 == NUMBANDS)
 			((t_targ *)args[i])->end_y = f->windowwidth - 1;
 		pthread_create(&thread_ids[i], NULL, g_funcs[f->type], args[i]);
-		++i;
 	}
 	i = 0;
 	while (i < NUMBANDS)
@@ -105,6 +83,9 @@ int			fract_loop(t_fract *f)
 	while (i < NUMBANDS)
 		free(args[i++]);
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->mlx_image, 0, 0);
+	if (f->display_text)
+		display_text(f);
+	f->update = 0;
 	return (0);
 }
 
@@ -125,9 +106,8 @@ int			main(int argc, char **argv)
 	if (!(f->img = mlx_get_data_addr(f->mlx_image, &f->bits_per_pixel,\
 									&f->size_line, &f->endian)))
 		exit(1);
-	ft_printf("windowheight %u windowwidth %u type %u arg %u\n",\
-			f->windowheight, f->windowwidth, f->type, f->arg);
 	mlx_loop_hook(f->mlx_ptr, fract_loop, f);
 	mlx_key_hook(f->win_ptr, key_func, f);
+	mlx_mouse_hook(f->win_ptr, mouse_func, f);
 	mlx_loop(f->mlx_ptr);
 }

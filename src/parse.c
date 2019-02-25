@@ -6,11 +6,22 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:39:57 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 18:34:29 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 15:37:20 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static const char					*g_fracts[] =
+{
+	"mandelbrot",
+	"julia",
+	"ship",
+	"sierpinski",
+	"buddha",
+	"lyapunov",
+	NULL,
+};
 
 static unsigned int			print_types(void)
 {

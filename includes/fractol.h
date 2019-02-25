@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 19:25:27 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 16:15:09 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define DEFAULTHEIGHT 1000
 # define DEFAULTWIDTH 1000
 # define NUMBANDS 4
+# define MOVE 10
 
 # define MAXKEYS 300
 
@@ -46,6 +47,15 @@
 
 # define CLR(R, G, B, A) ((int32_t)((A<<0x18) | (R<<0x10) | (G<<0x8) | (B)))
 
+enum eTypes {
+	Mandelbrot,
+	Julia,
+	Ship,
+	Sierpinski,
+	Buddha,
+	Lyapunov,
+};
+
 typedef struct			s_fract
 {
 	void			*mlx_ptr;
@@ -55,11 +65,15 @@ typedef struct			s_fract
 
 	int				windowheight;
 	int				windowwidth;
+
+	int				move_x;
+	int				move_y;
+
 	int				center_x;
 	int				center_y;
 	double			zoom;
 
-	unsigned		type;
+	enum eTypes		type;
 	unsigned		arg;
 
 	unsigned		iters;
@@ -69,11 +83,17 @@ typedef struct			s_fract
 	long double		max_x;
 	long double		max_y;
 
+	int				mouse_x;
+	int				mouse_y;
+
 	int				bits_per_pixel;
 	int				size_line;
 	int				endian;
 
 	int				update;
+	int				display_text;
+
+	int				lock;
 }						t_fract;
 
 typedef struct			s_targ
@@ -87,18 +107,16 @@ typedef void		*(*t_fnptr)();
 typedef void		(*t_kfun)();
 
 /*
-** Dispatch tables
-*/
-
-extern const char		*g_fracts[];
-extern const t_fnptr	g_funcs[];
-extern const t_kfun		g_keycmds[MAXKEYS];
-
-/*
 ** Arg parsing
 */
 
 t_fract					*get_cmd(int argc, char **argv);
+
+/*
+** Display
+*/
+
+void					display_text(t_fract *f);
 
 /*
 ** Struct manipulation
@@ -112,10 +130,26 @@ t_vect3					*scale_point(t_fract *f, int x, int y);
 ** Key functions
 */
 
+int						key_func(int key, t_fract *f);
 void					exit_prog(t_fract *f);
 void					change_type(t_fract *f);
 void					inc_iters(t_fract *f);
 void					dec_iters(t_fract *f);
+void					move_win_right(t_fract *f);
+void					move_win_left(t_fract *f);
+void					move_win_up(t_fract *f);
+void					move_win_down(t_fract *f);
+void					toggle_text(t_fract *f);
+void					toggle_lock(t_fract *f);
+void					reset_vals(t_fract *f);
+
+/*
+** Mouse functions
+*/
+
+int						mouse_func(int b, int x, int y, t_fract *f);
+void					zoom_in(t_fract *f, int b, int x, int y);
+void					zoom_out(t_fract *f, int b, int x, int y);
 
 /*
 ** Fractal calculations

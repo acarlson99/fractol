@@ -6,77 +6,59 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:22:26 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 19:56:07 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 15:34:34 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-/*
-** from math import log, log2
-**
-** MAX_ITER = 80
-**
-** def mandelbrot(c):
-** z = 0
-** n = 0
-** while abs(z) <= 2 and n < MAX_ITER:
-** z = z*z + c
-** n += 1
-**
-** if n == MAX_ITER:
-** return MAX_ITER
-**
-** return n + 1 - log(log2(abs(z)))
-*/
-
-#include <stdio.h>	// TODO: delete
-
-/*
-** TODO: remember to treat x and y differently
-** x is real part.  y is imag part
-*/
-
-static int32_t		calc_point(t_vect3 *n, unsigned iters)
+static int32_t		get_color(int itmax, int i)
 {
-	t_vect3			z;
-	double			tmp;
-	
-	(void)n;
-	(void)iters;
-	z = (t_vect3){.x = 0, .y = 0, .z = 0};
-	// printf("%f %f\n", n->x, n->y);	// TODO: delete
-	while (fabs(z.x) <= 2 && fabs(z.y) <= 2 && iters--)
-	{
-		// z = z * z + c	// TODO: figure out imaginary numbers
-	}
-	// printf("%f %f\n", z.x, z.y);
-	if (iters)
-		return (FT_INT_MAX);
+	if (itmax == i)
+		return (0xFFFFFF);
 	return (0);
+}
+
+static int32_t		calc_point(t_vect3 *z, unsigned iters)
+{
+	t_vect3			old;
+	t_vect3			new;
+	unsigned		i;
+	
+	i = 0;
+	old = (t_vect3){.x = 0, .y = 0, .z = 0};
+	new = (t_vect3){.x = 0, .y = 0, .z = 0};
+	while ((i < iters) && ((new.x * new.x + new.y * new.y) <= 4.0f))
+	{
+		old = new;
+		new.x = old.x * old.x - old.y * old.y + z->x;
+		new.y = 2.0f * old.x * old.y + z->y;
+		++i;
+	}
+	return (get_color(iters, i));
 }
 
 void				*calc_mandelbrot(t_targ *p)
 {
-	int					i;
-	int					j;
+	int					x;
+	int					y;
 	t_vect3				*n;
 
 	(void)n;
-	i = 0;
+	x = 0;
 	p->f->img[p->start_y] = 100;
-	while (i < p->f->windowheight)
+	while (x < p->f->windowheight)
 	{
-		j = p->start_y;
-		while (j < p->end_y)
+		y = p->start_y;
+		while (y < p->end_y)
 		{
-			n = scale_point(p->f, i, j);
+			n = scale_point(p->f, x, y);
 			PLT(p->f->img, calc_point(n,\
-					p->f->iters), j, i, p->f->size_line, p->f->bits_per_pixel);
+					p->f->iters), x, y, p->f->size_line, p->f->bits_per_pixel);
 			free(n);
-			++j;
+			++y;
 		}
-		++i;
+		++x;
 	}
 	return (NULL);
 }

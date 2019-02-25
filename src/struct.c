@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 21:14:11 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/23 19:25:13 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 15:26:24 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@ void			init_struct(t_fract *f)
 	f->windowheight = DEFAULTHEIGHT;
 	f->windowwidth = DEFAULTWIDTH;
 	f->center_x = f->windowwidth / 2;
-	f->center_x = f->windowheight / 2;
+	f->center_y = f->windowheight / 2;
 	f->zoom = 1;
 	f->type = 0;
 	f->arg = 0;
 	f->iters = 42;
-	f->update = 0;
+	f->mouse_x = 0;
+	f->mouse_y = 0;
+	f->update = 1;
+	f->display_text = 1;
+	f->lock = 0;
 }
 
 void			*make_thread_arg(t_fract *f, int start_y, int end_y)
@@ -47,7 +51,6 @@ void			*make_thread_arg(t_fract *f, int start_y, int end_y)
 **	point.y = 2.0 * (y - window->center->y) / (0.5 * window->zoom * IMG_SIZE);
 **	return (point);
 ** }
-**
 */
 
 t_vect3			*scale_point(t_fract *f, int x, int y)
@@ -56,8 +59,8 @@ t_vect3			*scale_point(t_fract *f, int x, int y)
 
 	if (!(v = ft_memalloc(sizeof(t_vect3))))
 		exit(1);
-	v->x = 2.0 * (x - f->center_x) / (5.0 * f->zoom * f->windowwidth);
-	v->y = 2.0 * (y - f->center_y) / (5.0 * f->zoom * f->windowwidth);
+	v->x = 2.0 * (x - f->center_x) / (0.5 * f->zoom * f->windowwidth);
+	v->y = 2.0 * (y - f->center_y) / (0.5 * f->zoom * f->windowwidth);
 	v->z = 0;
 	return (v);
 }
