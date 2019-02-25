@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:22:26 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 15:34:34 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 18:47:00 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int32_t		calc_point(t_vect3 *z, unsigned iters)
 	t_vect3			old;
 	t_vect3			new;
 	unsigned		i;
-	
+
 	i = 0;
 	old = (t_vect3){.x = 0, .y = 0, .z = 0};
 	new = (t_vect3){.x = 0, .y = 0, .z = 0};

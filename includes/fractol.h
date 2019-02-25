@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 16:15:09 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 18:45:49 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 
 # define CLR(R, G, B, A) ((int32_t)((A<<0x18) | (R<<0x10) | (G<<0x8) | (B)))
 
-enum eTypes {
+enum	e_types {
 	Mandelbrot,
 	Julia,
 	Ship,
@@ -73,7 +73,7 @@ typedef struct			s_fract
 	int				center_y;
 	double			zoom;
 
-	enum eTypes		type;
+	enum e_types	type;
 	unsigned		arg;
 
 	unsigned		iters;

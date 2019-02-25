@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:46:40 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 16:03:33 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 18:39:42 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,15 @@ void		zoom_out(t_fract *f, int b, int x, int y)
 	ft_printf("%d %d %d\n", b, x, y);
 	--f->zoom;
 	f->update = 1;
+}
+
+void		mouse_move(t_fract *f, int b, int x, int y)
+{
+	(void)b;
+	(void)x;
+	(void)y;
+	(void)f;
+	if (f->lock)
+		return ;
+	ft_printf("MOVE %d %d %d\n", b, x, y);
 }

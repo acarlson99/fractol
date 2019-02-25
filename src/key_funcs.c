@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:08:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 16:13:43 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 18:45:20 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void		exit_prog(t_fract *f)
 void		change_type(t_fract *f)
 {
 	++f->type;
+	f->lock = 0;
 	f->update = 1;
 }
 
@@ -100,10 +101,11 @@ void		toggle_text(t_fract *f)
 
 void		toggle_lock(t_fract *f)
 {
-	f->lock ^= 1;
 	if (f->type == Julia)
-		f->display_text = 0;
-	f->update = 1;
+	{
+		f->lock ^= 1;
+		f->update = 1;
+	}
 }
 
 void		reset_vals(t_fract *f)

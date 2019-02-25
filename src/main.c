@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 16:59:30 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 18:46:27 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,18 @@ static const t_fnptr				g_funcs[] =
 	NULL,
 };
 
-static void		check_stuff(t_fract *f)
+static int			check_stuff(t_fract *f)
 {
 	int		i;
-	
+
 	i = 0;
+	if (!f->update)
+		return (1);
 	while (i < f->windowwidth * f->windowheight * (f->bits_per_pixel / 8))
 		f->img[i++] = 0;
 	if (!g_funcs[f->type])
 		f->type = Mandelbrot;
+	return (0);
 }
 
 static int			fract_loop(t_fract *f)
@@ -64,14 +67,12 @@ static int			fract_loop(t_fract *f)
 	void		*args[NUMBANDS];
 	pthread_t	thread_ids[NUMBANDS];
 
-	if (!f->update || (f->lock && f->type == Julia))
-		return (0);
-	check_stuff(f);
+	RET_IF(check_stuff(f), 0);
 	i = -1;
 	while (++i < NUMBANDS)
 	{
 		args[i] = make_thread_arg(f, (f->windowwidth / NUMBANDS) * i,
-								  (f->windowwidth / NUMBANDS) * (i + 1));
+								(f->windowwidth / NUMBANDS) * (i + 1));
 		if (i + 1 == NUMBANDS)
 			((t_targ *)args[i])->end_y = f->windowwidth - 1;
 		pthread_create(&thread_ids[i], NULL, g_funcs[f->type], args[i]);
@@ -89,7 +90,7 @@ static int			fract_loop(t_fract *f)
 	return (0);
 }
 
-int			main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
 	t_fract			*f;
 
@@ -98,13 +99,13 @@ int			main(int argc, char **argv)
 	if (!(f->mlx_ptr = mlx_init()))
 		exit(1);
 	if (!(f->win_ptr = mlx_new_window(f->mlx_ptr, f->windowwidth,
-									f->windowheight, "fractol")))
+								f->windowheight, "fractol")))
 		exit(1);
 	if (!(f->mlx_image = mlx_new_image(f->mlx_ptr, f->windowwidth,\
-									f->windowheight)))
+								f->windowheight)))
 		exit(1);
 	if (!(f->img = mlx_get_data_addr(f->mlx_image, &f->bits_per_pixel,\
-									&f->size_line, &f->endian)))
+								&f->size_line, &f->endian)))
 		exit(1);
 	mlx_loop_hook(f->mlx_ptr, fract_loop, f);
 	mlx_key_hook(f->win_ptr, key_func, f);
