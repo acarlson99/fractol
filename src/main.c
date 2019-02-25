@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 16:13:53 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/24 16:59:30 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@
 
 static const t_fnptr				g_funcs[] =
 {
-	calc_mandelbrot,
-	calc_julia,
-	calc_ship,
-	calc_sierpinski,
-	calc_buddha,
-	calc_lyapunov,
+	[Mandelbrot] = calc_mandelbrot,
+	[Julia] = calc_julia,
+	[Ship] = calc_ship,
+	[Sierpinski] = calc_sierpinski,
+	[Buddha] = calc_buddha,
+	[Lyapunov] = calc_lyapunov,
 	NULL,
 };
 
@@ -55,7 +55,7 @@ static void		check_stuff(t_fract *f)
 	while (i < f->windowwidth * f->windowheight * (f->bits_per_pixel / 8))
 		f->img[i++] = 0;
 	if (!g_funcs[f->type])
-		f->type = 0;
+		f->type = Mandelbrot;
 }
 
 static int			fract_loop(t_fract *f)
