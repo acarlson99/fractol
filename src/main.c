@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 23:44:39 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 15:15:57 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@
 ** }
 */
 
-static const t_fnptr				g_funcs[] =	// TODO: This may cause errors
+#include <stdio.h>
+
+static const t_fnptr				g_funcs[] =
 {
 	[Mandelbrot] = calc_mandelbrot,
 	[Julia] = calc_julia,
 	[Ship] = calc_ship,
 	[Sierpinski] = calc_sierpinski,
-	[Buddha] = calc_buddha,
 	[Lyapunov] = calc_lyapunov,
 };
 
@@ -53,9 +54,12 @@ static int			check_stuff(t_fract *f)
 	i = 0;
 	if (!f->update)
 		return (1);
-	ft_bzero(f->img, f->windowwidth * f->windowwidth * (f->bits_per_pixel / 8));
-	if (f->type >= sizeof(g_funcs) / sizeof(g_funcs[0]))
+	printf("%p\n", g_funcs[f->type]);
+	printf("%d\n", f->type);
+	if (f->type >= sizeof(g_funcs) / sizeof(*g_funcs))
 		f->type = f->type % (sizeof(g_funcs) / sizeof(g_funcs[0]));
+	printf("%p\n", g_funcs[f->type]);
+	printf("%d\n", f->type);
 	if (!f->c)
 		f->c = scale_point(f, f->mouse_x, f->mouse_y);
 	else if (!f->lock)

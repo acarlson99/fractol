@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:21:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 23:41:47 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 15:23:49 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,20 @@
 
 static const char		*g_msgs[] =
 {
-	"KEY_Q exit_prog",
-	"KEY_TAB change_type",
-	"KEY_ESCAPE exit_prog",
-	"KEY_EQUAL inc_iters",
-	"KEY_MINUS dec_iters",
-	"KEY_PAD_ADD inc_iters",
-	"KEY_PAD_SUB dec_iters",
-	"KEY_RIGHT move_win_right",
-	"KEY_LEFT move_win_left",
-	"KEY_UP move_win_up",
-	"KEY_DOWN move_win_down",
-	"KEY_SPACEBAR toggle_text",
-	"KEY_L toggle_lock",
-	"KEY_ENTER reset_view",
-	"KEY_PAD_ENTER reset_view",
-	"KEY_R reset_vals",
-	"KEY_C toggle_colors",
-	"KEY_O rotate_left",
-	"KEY_P rotate_right",
-	NULL,
+	"Q/Esc: kill program",
+	"Space: toggle text",
+	"Ret: reset view",
+	"R: reset values",
+	"C: toggle colors",
+	"0-9: integer argument",
+	"E: evaluate arg (Julia only)",
+	"L: lock mouse (Julia only)",
+	"Del: reset integer argument",
+	"M: reload last integer argument",
+	"Tab: cycle fractals",
+	"+/-: inc/dec iters",
+	"Arrow keys: move around",
+	"[/]: change palette",
 };
 
 void		display_text(t_fract *f)
@@ -41,7 +35,7 @@ void		display_text(t_fract *f)
 	unsigned		i;
 
 	i = 0;
-	while (g_msgs[i])
+	while (i < sizeof(g_msgs) / sizeof(*g_msgs))
 	{
 		mlx_string_put(f->mlx_ptr, f->win_ptr, 4,
 					i * 16, FT_INT_MAX, (char *)g_msgs[i]);

@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:08:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 23:37:26 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 15:21:14 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,20 @@ const t_kfun			g_keycmds[MAXKEYS] =
 	[KEY_PAD_ENTER] = reset_view,
 	[KEY_R] = reset_vals,
 	[KEY_C] = toggle_colors,
-	[KEY_O] = rotate_left,
-	[KEY_P] = rotate_right,
-	
+	[KEY_OPEN_BRACE] = rotate_left,
+	[KEY_CLOSE_BRACE] = rotate_right,
+
+	[KEY_PAD_0] = change_arg_zero,
+	[KEY_PAD_1] = change_arg_one,
+	[KEY_PAD_2] = change_arg_two,
+	[KEY_PAD_3] = change_arg_three,
+	[KEY_PAD_4] = change_arg_four,
+	[KEY_PAD_5] = change_arg_five,
+	[KEY_PAD_6] = change_arg_six,
+	[KEY_PAD_7] = change_arg_seven,
+	[KEY_PAD_8] = change_arg_eight,
+	[KEY_PAD_9] = change_arg_nine,
+
 	[KEY_0] = change_arg_zero,
 	[KEY_1] = change_arg_one,
 	[KEY_2] = change_arg_two,
@@ -51,18 +62,18 @@ const t_kfun			g_keycmds[MAXKEYS] =
 	[KEY_M] = reload_register,
 };
 
-void		reload_register(t_fract *f)
+inline void		reload_register(t_fract *f)
 {
 	f->tmp_arg = f->saved_arg;
 }
 
-void		reset_register(t_fract *f)
+inline void		reset_register(t_fract *f)
 {
 	f->saved_arg = f->tmp_arg;
 	f->tmp_arg = 0;
 }
 
-void		evaluate_arg(t_fract *f)
+inline void		evaluate_arg(t_fract *f)
 {
 	if (f->tmp_arg)
 	{
@@ -72,59 +83,58 @@ void		evaluate_arg(t_fract *f)
 	}
 }
 
-void		change_arg_nine(t_fract *f)
+inline void		change_arg_nine(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10 + 9;
 }
 
-void		change_arg_eight(t_fract *f)
+inline void		change_arg_eight(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10 + 8;
 }
 
-void		change_arg_seven(t_fract *f)
+inline void		change_arg_seven(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10 + 7;
 }
 
-void		change_arg_six(t_fract *f)
+inline void		change_arg_six(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10 + 6;
 }
 
-void		change_arg_five(t_fract *f)
+inline void		change_arg_five(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10 + 5;
 }
 
-void		change_arg_four(t_fract *f)
+inline void		change_arg_four(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10 + 4;
 }
 
-void		change_arg_three(t_fract *f)
+inline void		change_arg_three(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10 + 3;
 }
 
-void		change_arg_two(t_fract *f)
+inline void		change_arg_two(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10 + 2;
 }
 
-void		change_arg_one(t_fract *f)
+inline void		change_arg_one(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10 + 1;
 }
 
-void		change_arg_zero(t_fract *f)
+inline void		change_arg_zero(t_fract *f)
 {
 	f->tmp_arg = f->tmp_arg * 10;
 }
 
-int			key_func(int key, t_fract *f)
+int				key_func(int key, t_fract *f)
 {
-	(void)f;
 	if (key < MAXKEYS && g_keycmds[key])
 	{
 		g_keycmds[key](f);
@@ -136,13 +146,13 @@ int			key_func(int key, t_fract *f)
 	return (0);
 }
 
-void		exit_prog(t_fract *f)
+inline void		exit_prog(t_fract *f)
 {
 	(void)f;
 	exit(0);
 }
 
-void		change_type(t_fract *f)
+inline void		change_type(t_fract *f)
 {
 	unsigned		i;
 
@@ -163,7 +173,7 @@ void		change_type(t_fract *f)
 	reset_view(f);
 }
 
-void		inc_iters(t_fract *f)
+inline void		inc_iters(t_fract *f)
 {
 	if (f->tmp_arg)
 	{
@@ -175,7 +185,7 @@ void		inc_iters(t_fract *f)
 	f->update = 1;
 }
 
-void		dec_iters(t_fract *f)
+inline void		dec_iters(t_fract *f)
 {
 	if (f->tmp_arg)
 	{
@@ -187,7 +197,7 @@ void		dec_iters(t_fract *f)
 	f->update = 1;
 }
 
-void		move_win_right(t_fract *f)
+inline void		move_win_right(t_fract *f)
 {
 	if (f->tmp_arg)
 	{
@@ -199,7 +209,7 @@ void		move_win_right(t_fract *f)
 	f->update = 1;
 }
 
-void		move_win_left(t_fract *f)
+inline void		move_win_left(t_fract *f)
 {
 	if (f->tmp_arg)
 	{
@@ -211,7 +221,7 @@ void		move_win_left(t_fract *f)
 	f->update = 1;
 }
 
-void		move_win_up(t_fract *f)
+inline void		move_win_up(t_fract *f)
 {
 	if (f->tmp_arg)
 	{
@@ -223,7 +233,7 @@ void		move_win_up(t_fract *f)
 	f->update = 1;
 }
 
-void		move_win_down(t_fract *f)
+inline void		move_win_down(t_fract *f)
 {
 	if (f->tmp_arg)
 	{
@@ -235,13 +245,13 @@ void		move_win_down(t_fract *f)
 	f->update = 1;
 }
 
-void		toggle_text(t_fract *f)
+inline void		toggle_text(t_fract *f)
 {
 	f->display_text ^= 1;
 	f->update = 1;
 }
 
-void		toggle_lock(t_fract *f)
+inline void		toggle_lock(t_fract *f)
 {
 	if (f->type == Julia)
 	{
@@ -250,22 +260,23 @@ void		toggle_lock(t_fract *f)
 	}
 }
 
-void		toggle_colors(t_fract *f)
+inline void		toggle_colors(t_fract *f)
 {
 	f->colors ^= 1;
 	f->update = 1;
 }
 
-void		reset_vals(t_fract *f)
+inline void		reset_vals(t_fract *f)
 {
 	reset_view(f);
 	f->rot = 0;
 	f->tmp_arg = 0;
 	f->saved_arg = 0;
+	f->lock = 0;
 	f->iters = ITERS;
 }
 
-void		reset_view(t_fract *f)
+inline void		reset_view(t_fract *f)
 {
 	f->center_x = f->windowwidth / 2;
 	f->center_y = f->windowheight / 2;
@@ -273,23 +284,23 @@ void		reset_view(t_fract *f)
 	f->update = 1;
 }
 
-int			close_win(t_fract *f)
+int				close_win(t_fract *f)
 {
 	(void)f;
 	exit(0);
 }
 
 /*
-** Rotates to make pretty colors
+** Rotates int to make pretty colors
 */
 
-void		rotate_left(t_fract *f)
+inline void		rotate_left(t_fract *f)
 {
 	++f->rot;
 	f->update = 1;
 }
 
-void		rotate_right(t_fract *f)
+inline void		rotate_right(t_fract *f)
 {
 	--f->rot;
 	f->update = 1;

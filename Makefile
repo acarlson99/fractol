@@ -6,7 +6,7 @@
 #    By: acarlson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/20 16:18:37 by acarlson          #+#    #+#              #
-#    Updated: 2019/02/25 16:13:34 by acarlson         ###   ########.fr        #
+#    Updated: 2019/02/26 15:04:35 by acarlson         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,7 +18,7 @@ OBJDIR = .obj/
 INCLUDES = -I includes/ -I libft/includes/ -I minilibx_macos/
 FRAMEWORKS = -framework OpenGL -framework AppKit
 FILES = main parse struct key_funcs mouse_funcs util\
-		mandelbrot julia ship sierpinski buddha lyapunov
+		mandelbrot julia ship sierpinski lyapunov
 CFILES = $(addsuffix .c, $(FILES))
 OFILES = $(addprefix $(OBJDIR), $(addsuffix .o, $(FILES)))
 LIBS = -L libft/ -lft -L minilibx_macos/ -lmlx
