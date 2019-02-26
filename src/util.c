@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:21:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 21:20:49 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 22:08:46 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static const char		*g_msgs[] =
 	"0: reset fractal",
 	"L: lock mouse (julia only)",
 	"C: toggle black/white",
+	"R: increase color offset",
+	"T: decrease color offset",
 	NULL,
 };
 
@@ -39,11 +41,14 @@ void		display_text(t_fract *f)
 	}
 }
 
-int32_t		get_color(unsigned itmax, unsigned i, int color)
+int32_t		get_color(unsigned itmax, unsigned i, int color, int rot)
 {
+	int32_t		c;
+
 	if (color)
 	{
-		return (i * itmax & 0xFFFFFF);
+		c = (i * itmax & 0xFFFFFF);
+		return (((c << rot)|(c >> (32 - rot))) & 0xFFFFFF);
 	}
 	else
 	{

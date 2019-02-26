@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 21:01:36 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 22:18:11 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # define DEFAULTWIDTH 1000
 # define NUMBANDS 16
 # define MOVE 10
-# define ZOOM 5
+# define ZOOM 20
+# define ITERS 42
 
 # define MAXKEYS 300
 
@@ -93,6 +94,8 @@ typedef struct			s_fract
 	int				lock;
 
 	int				colors;
+
+	int				rot;
 }						t_fract;
 
 typedef struct			s_targ
@@ -143,6 +146,8 @@ void					toggle_lock(t_fract *f);
 void					toggle_colors(t_fract *f);
 void					reset_vals(t_fract *f);
 void					reset_view(t_fract *f);
+void					rotate_left(t_fract *f);
+void					rotate_right(t_fract *f);
 
 /*
 ** Mouse functions
@@ -158,7 +163,8 @@ int						close_win(t_fract *f);
 ** Fractal calculations
 */
 
-int32_t					get_color(unsigned itmax, unsigned i, int color);
+int32_t					get_color(unsigned itmax,\
+									unsigned i, int color, int rot);
 void					*calc_mandelbrot(t_targ *p);
 void					*calc_julia(t_targ *p);
 void					*calc_ship(t_targ *p);

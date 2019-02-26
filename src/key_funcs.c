@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:08:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 21:08:08 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 22:30:22 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ const t_kfun			g_keycmds[MAXKEYS] =
 	[KEY_0] = reset_vals,
 	[KEY_PAD_0] = reset_vals,
 	[KEY_C] = toggle_colors,
+	[KEY_T] = rotate_left,
+	[KEY_R] = rotate_right,
 };
 
 int			key_func(int key, t_fract *f)
@@ -122,7 +124,8 @@ void		toggle_colors(t_fract *f)
 void		reset_vals(t_fract *f)
 {
 	reset_view(f);
-	f->iters = 42;
+	f->rot = 0;
+	f->iters = ITERS;
 }
 
 void		reset_view(t_fract *f)
@@ -137,4 +140,20 @@ int			close_win(t_fract *f)
 {
 	(void)f;
 	exit(0);
+}
+
+/*
+** Rotates to make pretty colors
+*/
+
+void		rotate_left(t_fract *f)
+{
+	++f->rot;
+	f->update = 1;
+}
+
+void		rotate_right(t_fract *f)
+{
+	--f->rot;
+	f->update = 1;
 }
