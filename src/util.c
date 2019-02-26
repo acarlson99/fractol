@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:21:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 17:37:37 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 17:40:56 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static const char		*g_msgs[] =
 	NULL,
 };
 
-void		display_text(t_fract *f)
+void		display_text(t_fract *f)	// TODO: maybe fix this so scrolling is less weird
 {
 	unsigned		i;
 
