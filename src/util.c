@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:21:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 17:40:56 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 21:20:49 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ static const char		*g_msgs[] =
 	"ESC/Q: quit",
 	"Arrows: move",
 	"+/-: inc/dec iterations",
-	"RET: reset fractal",
+	"RET: reset view",
+	"0: reset fractal",
 	"L: lock mouse (julia only)",
 	"C: toggle black/white",
 	NULL,
 };
 
-void		display_text(t_fract *f)	// TODO: maybe fix this so scrolling is less weird
+void		display_text(t_fract *f)
 {
 	unsigned		i;
 

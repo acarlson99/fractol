@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 16:23:46 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 21:01:36 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define DEFAULTWIDTH 1000
 # define NUMBANDS 16
 # define MOVE 10
+# define ZOOM 5
 
 # define MAXKEYS 300
 
@@ -77,11 +78,6 @@ typedef struct			s_fract
 	unsigned		arg;
 
 	unsigned		iters;
-
-	long double		min_x;
-	long double		min_y;
-	long double		max_x;
-	long double		max_y;
 
 	int				mouse_x;
 	int				mouse_y;
@@ -146,6 +142,7 @@ void					toggle_text(t_fract *f);
 void					toggle_lock(t_fract *f);
 void					toggle_colors(t_fract *f);
 void					reset_vals(t_fract *f);
+void					reset_view(t_fract *f);
 
 /*
 ** Mouse functions

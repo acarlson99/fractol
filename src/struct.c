@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 21:14:11 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 16:32:28 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 20:50:28 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ t_vect3			*scale_point(t_fract *f, int x, int y)
 
 	if (!(v = ft_memalloc(sizeof(t_vect3))))
 		exit(1);
-	v->x = 2.0 * (x - f->center_x) / (0.5 * f->zoom * f->windowwidth);
-	v->y = 2.0 * (y - f->center_y) / (0.5 * f->zoom * f->windowwidth);
+	v->x = 2.0 * (x - f->center_x * f->zoom) / (0.5 * f->zoom * f->windowwidth);
+	v->y = 2.0 * (y - f->center_y * f->zoom) / (0.5 * f->zoom * f->windowwidth);
 	v->z = 0;
 	return (v);
 }

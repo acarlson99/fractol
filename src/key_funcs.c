@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:08:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 16:26:57 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 21:08:08 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ const t_kfun			g_keycmds[MAXKEYS] =
 	[KEY_DOWN] = move_win_down,
 	[KEY_SPACEBAR] = toggle_text,
 	[KEY_L] = toggle_lock,
-	[KEY_ENTER] = reset_vals,
-	[KEY_PAD_ENTER] = reset_vals,
+	[KEY_ENTER] = reset_view,
+	[KEY_PAD_ENTER] = reset_view,
+	[KEY_0] = reset_vals,
+	[KEY_PAD_0] = reset_vals,
 	[KEY_C] = toggle_colors,
 };
 
@@ -55,7 +57,7 @@ void		change_type(t_fract *f)
 	++f->type;
 	f->lock = 0;
 	f->update = 1;
-	reset_vals(f);
+	reset_view(f);
 }
 
 void		inc_iters(t_fract *f)
@@ -74,25 +76,25 @@ void		dec_iters(t_fract *f)
 
 void		move_win_right(t_fract *f)
 {
-	f->center_x -= MOVE;
+	f->center_x -= MAX(MOVE / f->zoom, 1);
 	f->update = 1;
 }
 
 void		move_win_left(t_fract *f)
 {
-	f->center_x += MOVE;
+	f->center_x += MAX(MOVE / f->zoom, 1);
 	f->update = 1;
 }
 
 void		move_win_up(t_fract *f)
 {
-	f->center_y += MOVE;
+	f->center_y += MAX(MOVE / f->zoom, 1);
 	f->update = 1;
 }
 
 void		move_win_down(t_fract *f)
 {
-	f->center_y -= MOVE;
+	f->center_y -= MAX(MOVE / f->zoom, 1);
 	f->update = 1;
 }
 
@@ -119,10 +121,15 @@ void		toggle_colors(t_fract *f)
 
 void		reset_vals(t_fract *f)
 {
+	reset_view(f);
+	f->iters = 42;
+}
+
+void		reset_view(t_fract *f)
+{
 	f->center_x = f->windowwidth / 2;
 	f->center_y = f->windowheight / 2;
 	f->zoom = 1;
-	f->iters = 42;
 	f->update = 1;
 }
 
