@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 15:50:29 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 23:40:18 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static const t_fnptr				g_funcs[] =
 	[Sierpinski] = calc_sierpinski,
 	[Buddha] = calc_buddha,
 	[Lyapunov] = calc_lyapunov,
-	NULL,
 };
 
 static int			check_stuff(t_fract *f)
@@ -55,8 +54,8 @@ static int			check_stuff(t_fract *f)
 	if (!f->update)
 		return (1);
 	ft_bzero(f->img, f->windowwidth * f->windowwidth * (f->bits_per_pixel / 8));
-	if (!g_funcs[f->type])
-		f->type = Mandelbrot;
+	if (f->type >= sizeof(g_funcs) / sizeof(g_funcs[0]))
+		f->type = f->type % (sizeof(g_funcs) / sizeof(g_funcs[0]));
 	if (!f->c)
 		f->c = scale_point(f, f->mouse_x, f->mouse_y);
 	else if (!f->lock)

@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 22:18:11 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 23:33:06 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ typedef struct			s_fract
 
 	enum e_types	type;
 	unsigned		arg;
+	unsigned		tmp_arg;
+	unsigned		saved_arg;
+	int				save_arg;
 
 	unsigned		iters;
 
@@ -148,6 +151,20 @@ void					reset_vals(t_fract *f);
 void					reset_view(t_fract *f);
 void					rotate_left(t_fract *f);
 void					rotate_right(t_fract *f);
+
+void					change_arg_zero(t_fract *f);
+void					change_arg_one(t_fract *f);
+void					change_arg_two(t_fract *f);
+void					change_arg_three(t_fract *f);
+void					change_arg_four(t_fract *f);
+void					change_arg_five(t_fract *f);
+void					change_arg_six(t_fract *f);
+void					change_arg_seven(t_fract *f);
+void					change_arg_eight(t_fract *f);
+void					change_arg_nine(t_fract *f);
+void					evaluate_arg(t_fract *f);
+void					reset_register(t_fract *f);
+void					reload_register(t_fract *f);
 
 /*
 ** Mouse functions

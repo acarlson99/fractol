@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 21:14:11 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 22:21:05 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 23:33:23 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void			init_struct(t_fract *f)
 	f->center_y = f->windowheight / 2;
 	f->zoom = 1;
 	f->type = Mandelbrot;
-	f->arg = 0;
+	f->arg = 2;
+	f->tmp_arg = 0;
+	f->saved_arg = 0;
+	f->save_arg = 0;
 	f->iters = ITERS;
 	f->mouse_x = 0;
 	f->mouse_y = 0;

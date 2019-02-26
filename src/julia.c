@@ -6,24 +6,50 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:25:15 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 22:06:38 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 23:01:03 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/*
+** static int32_t		calc_point(t_vect3 *z, t_fract *f)
+** {
+** 	t_vect3			old;
+** 	unsigned		i;
+** 
+** 	i = 0;
+** 	old = (t_vect3){.x = z->x, .y = z->y, .z = 0};
+** 	while ((i < f->iters) && ((z->x * z->x + z->y * z->y) <= 4.0f))
+** 	{
+** 		old = (t_vect3){.x = z->x, .y = z->y, .z = z->z};
+** 		z->x = old.x * old.x - old.y * old.y + f->c->x;
+** 		z->y = 2 * old.x * old.y + f->c->y;
+** 		++i;
+** 	}
+** 	return (get_color(f->iters, i, f->colors, f->rot));
+** }
+*/
+
 static int32_t		calc_point(t_vect3 *z, t_fract *f)
 {
-	t_vect3			old;
-	unsigned		i;
+	double		zx;
+	double		zy;
+	double		xtmp;
+	unsigned	i;
 
+	zx = z->x;
+	zy = z->y;
+	xtmp = 0;
 	i = 0;
-	old = (t_vect3){.x = z->x, .y = z->y, .z = 0};
-	while ((i < f->iters) && ((z->x * z->x + z->y * z->y) <= 4.0f))
+	int n = f->arg;
+	double cx = f->c->x;
+	double cy = f->c->y;
+	while (zx * zx + zy * zy < 4 && i < f->iters)
 	{
-		old = (t_vect3){.x = z->x, .y = z->y, .z = z->z};
-		z->x = old.x * old.x - old.y * old.y + f->c->x;
-		z->y = 2 * old.x * old.y + f->c->y;
+		xtmp = pow((zx * zx + zy * zy), (n / 2)) * cos(n * atan2(zy, zx)) + cx;
+		zy = pow((zx * zx + zy * zy), (n / 2)) * sin(n * atan2(zy, zx)) + cy;
+		zx = xtmp;
 		++i;
 	}
 	return (get_color(f->iters, i, f->colors, f->rot));
