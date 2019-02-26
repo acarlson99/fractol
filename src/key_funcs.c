@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:08:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 19:05:51 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 16:26:57 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ const t_kfun			g_keycmds[MAXKEYS] =
 	[KEY_L] = toggle_lock,
 	[KEY_ENTER] = reset_vals,
 	[KEY_PAD_ENTER] = reset_vals,
+	[KEY_C] = toggle_colors,
 };
 
 int			key_func(int key, t_fract *f)
@@ -54,11 +55,13 @@ void		change_type(t_fract *f)
 	++f->type;
 	f->lock = 0;
 	f->update = 1;
+	reset_vals(f);
 }
 
 void		inc_iters(t_fract *f)
 {
-	++f->iters;
+	if (f->iters < FT_UINT_MAX)
+		++f->iters;
 	f->update = 1;
 }
 
@@ -108,6 +111,12 @@ void		toggle_lock(t_fract *f)
 	}
 }
 
+void		toggle_colors(t_fract *f)
+{
+	f->colors ^= 1;
+	f->update = 1;
+}
+
 void		reset_vals(t_fract *f)
 {
 	f->center_x = f->windowwidth / 2;
@@ -115,10 +124,9 @@ void		reset_vals(t_fract *f)
 	f->zoom = 1;
 	f->iters = 42;
 	f->update = 1;
-	f->lock = 0;
 }
 
-int						close_win(t_fract *f)
+int			close_win(t_fract *f)
 {
 	(void)f;
 	exit(0);

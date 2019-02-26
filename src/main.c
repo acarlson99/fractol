@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 19:04:47 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 15:50:29 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,16 @@ static int			check_stuff(t_fract *f)
 	i = 0;
 	if (!f->update)
 		return (1);
-	while (i < f->windowwidth * f->windowheight * (f->bits_per_pixel / 8))
-		f->img[i++] = 0;
+	ft_bzero(f->img, f->windowwidth * f->windowwidth * (f->bits_per_pixel / 8));
 	if (!g_funcs[f->type])
 		f->type = Mandelbrot;
+	if (!f->c)
+		f->c = scale_point(f, f->mouse_x, f->mouse_y);
+	else if (!f->lock)
+	{
+		free(f->c);
+		f->c = scale_point(f, f->mouse_x, f->mouse_y);
+	}
 	return (0);
 }
 
@@ -94,10 +100,8 @@ static void			add_hooks(t_fract *f)
 {
 	mlx_loop_hook(f->mlx_ptr, fract_loop, f);
 	mlx_hook(f->win_ptr, 2, 0, key_func, f);
-
 	mlx_hook(f->win_ptr, 6, 0, mouse_move, f);
 	mlx_hook(f->win_ptr, 17, 0, close_win, f);
-
 	mlx_mouse_hook(f->win_ptr, mouse_func, f);
 }
 

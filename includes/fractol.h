@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 19:05:56 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 16:23:46 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define WDMAX 10000
 # define DEFAULTHEIGHT 1000
 # define DEFAULTWIDTH 1000
-# define NUMBANDS 4
+# define NUMBANDS 16
 # define MOVE 10
 
 # define MAXKEYS 300
@@ -85,6 +85,7 @@ typedef struct			s_fract
 
 	int				mouse_x;
 	int				mouse_y;
+	t_vect3			*c;
 
 	int				bits_per_pixel;
 	int				size_line;
@@ -94,6 +95,8 @@ typedef struct			s_fract
 	int				display_text;
 
 	int				lock;
+
+	int				colors;
 }						t_fract;
 
 typedef struct			s_targ
@@ -141,9 +144,8 @@ void					move_win_up(t_fract *f);
 void					move_win_down(t_fract *f);
 void					toggle_text(t_fract *f);
 void					toggle_lock(t_fract *f);
+void					toggle_colors(t_fract *f);
 void					reset_vals(t_fract *f);
-
-int						close_win(t_fract *f);
 
 /*
 ** Mouse functions
@@ -152,13 +154,14 @@ int						close_win(t_fract *f);
 int						mouse_func(int b, int x, int y, t_fract *f);
 void					zoom_in(t_fract *f, int b, int x, int y);
 void					zoom_out(t_fract *f, int b, int x, int y);
-
 int						mouse_move(int x, int y, t_fract *f);
+int						close_win(t_fract *f);
 
 /*
 ** Fractal calculations
 */
 
+int32_t					get_color(unsigned itmax, unsigned i, int color);
 void					*calc_mandelbrot(t_targ *p);
 void					*calc_julia(t_targ *p);
 void					*calc_ship(t_targ *p);

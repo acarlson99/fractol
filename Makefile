@@ -6,7 +6,7 @@
 #    By: acarlson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/20 16:18:37 by acarlson          #+#    #+#              #
-#    Updated: 2019/02/24 15:03:33 by acarlson         ###   ########.fr        #
+#    Updated: 2019/02/25 16:13:34 by acarlson         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -89,6 +89,12 @@ k: fclean
 	rm -f $(DNAME)
 	rm -rf *.dSYM
 	rm -f TAGS
+
+# Makes re, but does not remake libs
+l:
+	rm -Rf $(OBJDIR)
+	rm -f $(NAME)
+	make all
 
 fsan:
 	$(CC) $(DFLAGS) $(INCLUDES) $(FRAMEWORKS) $(LIBS) $(addprefix $(SRC), $(CFILES)) -o $(DNAME) -fsanitize=address

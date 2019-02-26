@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:46:40 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 18:59:41 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 16:30:07 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void		zoom_out(t_fract *f, int b, int x, int y)
 
 int			mouse_move(int x, int y, t_fract *f)
 {
-	(void)x;
-	(void)y;
-	(void)f;
-	if (f->lock)
+	if (f->lock || f->type != Julia)
 		return (0);
+	f->mouse_x = x;
+	f->mouse_y = y;
+	f->update = 1;
 	ft_printf("MOVE %d %d\n", x, y);
 	return (0);
 }
