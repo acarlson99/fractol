@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 23:40:18 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 23:44:39 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 ** }
 */
 
-static const t_fnptr				g_funcs[] =
+static const t_fnptr				g_funcs[] =	// TODO: This may cause errors
 {
 	[Mandelbrot] = calc_mandelbrot,
 	[Julia] = calc_julia,
