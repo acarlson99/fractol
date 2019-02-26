@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:21:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/25 16:31:00 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/25 17:37:37 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ void		display_text(t_fract *f)
 
 int32_t		get_color(unsigned itmax, unsigned i, int color)
 {
-	if (!color)
+	if (color)
 	{
-		if (itmax == i)
-			return (0xFFFFFF);
-		return (0);
+		return (i * itmax & 0xFFFFFF);
 	}
-	else	// TODO: this
+	else
 	{
 		if (itmax == i)
 			return (0xFFFFFF);
