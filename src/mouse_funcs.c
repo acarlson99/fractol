@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:46:40 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 15:32:25 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:15:39 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static const t_kfun			g_funcs[10] =
 {
-	[4] = zoom_in,
-	[5] = zoom_out,
-	[6] = move_win_left,
-	[7] = move_win_right,
+	[SCROLL_UP] = zoom_in,
+	[SCROLL_DOWN] = zoom_out,
+	[SCROLL_LEFT] = move_win_left,
+	[SCROLL_RIGHT] = move_win_right,
 };
 
 int			mouse_func(int b, int x, int y, t_fract *f)
 {
-	if (g_funcs[b])
+	if ((unsigned)b < sizeof(g_funcs) / sizeof(*g_funcs) && g_funcs[b])
 		g_funcs[b](f, b, x, y);
 	return (0);
 }

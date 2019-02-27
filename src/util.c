@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:21:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 15:23:49 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:04:23 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static const char		*g_msgs[] =
 	"R: reset values",
 	"C: toggle colors",
 	"0-9: integer argument",
-	"E: evaluate arg (Julia only)",
+	"N: make argument negative",
+	"E: evaluate arg (Mandelbrot/Julia)",
 	"L: lock mouse (Julia only)",
 	"Del: reset integer argument",
 	"M: reload last integer argument",

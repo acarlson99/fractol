@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 15:41:21 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:04:53 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static const t_fnptr				g_funcs[] =
 	[Mandelbrot] = calc_mandelbrot,
 	[Julia] = calc_julia,
 	[Ship] = calc_ship,
-	[Lyapunov] = calc_lyapunov,
 };
 
 static int			check_stuff(t_fract *f)

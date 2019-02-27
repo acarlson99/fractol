@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 15:39:29 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:05:00 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <math.h>
 # include <pthread.h>
 # include "mlx_keys_macos.h"
+# include "mlx_mouse.h"
 # include "mlx.h"
 # include "libft.h"
 
@@ -53,7 +54,6 @@ enum	e_types {
 	Mandelbrot,
 	Julia,
 	Ship,
-	Lyapunov,
 };
 
 typedef struct			s_fract
@@ -74,9 +74,9 @@ typedef struct			s_fract
 	double			zoom;
 
 	enum e_types	type;
-	unsigned		arg;
-	unsigned		tmp_arg;
-	unsigned		saved_arg;
+	int				arg;
+	int				tmp_arg;
+	int				saved_arg;
 	int				save_arg;
 
 	unsigned		iters;
@@ -163,6 +163,7 @@ void					change_arg_nine(t_fract *f);
 void					evaluate_arg(t_fract *f);
 void					reset_register(t_fract *f);
 void					reload_register(t_fract *f);
+void					pos_neg(t_fract *f);
 
 /*
 ** Mouse functions
@@ -183,8 +184,5 @@ int32_t					get_color(unsigned itmax,\
 void					*calc_mandelbrot(t_targ *p);
 void					*calc_julia(t_targ *p);
 void					*calc_ship(t_targ *p);
-void					*calc_sierpinski(t_targ *p);
-void					*calc_buddha(t_targ *p);
-void					*calc_lyapunov(t_targ *p);
 
 #endif

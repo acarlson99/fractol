@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:25:15 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 16:25:36 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 17:52:16 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int32_t		calc_point_2(t_vect3 *z, t_fract *f)
 	return (get_color(f->iters, i, f->colors, f->rot));
 }
 
-static int32_t		calc_point_n(t_vect3 *z, t_fract *f)	// TODO: handle negative arguments
+static int32_t		calc_point_n(t_vect3 *z, t_fract *f)
 {
 	double		zx;
 	double		zy;
