@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:29:22 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 15:15:16 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 15:39:29 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ enum	e_types {
 	Mandelbrot,
 	Julia,
 	Ship,
-	Sierpinski,
 	Lyapunov,
 };
 

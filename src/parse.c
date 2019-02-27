@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 19:39:57 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/24 15:37:20 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 15:39:54 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static const char					*g_fracts[] =
 	"mandelbrot",
 	"julia",
 	"ship",
-	"sierpinski",
-	"buddha",
 	"lyapunov",
 	NULL,
 };

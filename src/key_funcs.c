@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:08:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 15:21:14 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 16:08:34 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ int				key_func(int key, t_fract *f)
 	}
 	if (!f->save_arg)
 		f->tmp_arg = 0;
-	ft_printf("Unknown key: %d\n", key);
 	return (0);
 }
 

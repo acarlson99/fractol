@@ -6,44 +6,17 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:38:27 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 15:15:57 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 15:41:21 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-/*
-** #include <quartz.h>
-** CGDirectDisplayID		id = CGMainDisplayID();
-** printf("height %d\nwidth %d\n", CGDisplayPixelsHigh(id),\
-**									CGDisplayPixelsWide(id));
-**
-** *****************************************************************************
-** #define IDX(X, Y, L, BPP) ((Y) * (L)) + ((X) * ((BPP) / 8))
-**
-** static void	pixel(t_img *img, t_int2 pos, t_rgba rgba)
-** {
-**	int32_t	color;
-**
-**	if (pos.x >= WIN_X || pos.x < 0 || pos.y >= WIN_Y || pos.y < 0)
-**		return ;
-**	color = 0x00000000;
-**	color |= rgba.w << 0x18;
-**	color |= rgba.x << 0x10;
-**	color |= rgba.y << 0x08;
-**	color |= rgba.z << 0x00;
-**	*((int32_t*)(&img->buf[IDX(pos.x, pos.y, img->len, img->bpp)])) = color;
-** }
-*/
-
-#include <stdio.h>
 
 static const t_fnptr				g_funcs[] =
 {
 	[Mandelbrot] = calc_mandelbrot,
 	[Julia] = calc_julia,
 	[Ship] = calc_ship,
-	[Sierpinski] = calc_sierpinski,
 	[Lyapunov] = calc_lyapunov,
 };
 
@@ -54,12 +27,8 @@ static int			check_stuff(t_fract *f)
 	i = 0;
 	if (!f->update)
 		return (1);
-	printf("%p\n", g_funcs[f->type]);
-	printf("%d\n", f->type);
-	if (f->type >= sizeof(g_funcs) / sizeof(*g_funcs))
+	if ((size_t)f->type >= sizeof(g_funcs) / sizeof(*g_funcs))
 		f->type = f->type % (sizeof(g_funcs) / sizeof(g_funcs[0]));
-	printf("%p\n", g_funcs[f->type]);
-	printf("%d\n", f->type);
 	if (!f->c)
 		f->c = scale_point(f, f->mouse_x, f->mouse_y);
 	else if (!f->lock)
@@ -117,7 +86,7 @@ int					main(int argc, char **argv)
 	if (!(f->mlx_ptr = mlx_init()))
 		exit(1);
 	if (!(f->win_ptr = mlx_new_window(f->mlx_ptr, f->windowwidth,
-								f->windowheight, "fractol")))
+								f->windowheight, "fract'ol")))
 		exit(1);
 	if (!(f->mlx_image = mlx_new_image(f->mlx_ptr, f->windowwidth,\
 								f->windowheight)))
