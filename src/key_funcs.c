@@ -6,13 +6,13 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:08:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 18:11:37 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:21:34 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-const t_kfun			g_keycmds[MAXKEYS] =
+static const t_kfun			g_keycmds[MAXKEYS] =
 {
 	[KEY_Q] = exit_prog,
 	[KEY_TAB] = change_type,
