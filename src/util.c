@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/24 14:21:42 by acarlson          #+#    #+#             */
-/*   Updated: 2019/02/26 18:04:23 by acarlson         ###   ########.fr       */
+/*   Updated: 2019/02/26 19:21:53 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static const char		*g_msgs[] =
 	"Tab: cycle fractals",
 	"+/-: inc/dec iters",
 	"Arrow keys: move around",
+	"Scroll: zoom in/out",
 	"[/]: change palette",
 };
 
