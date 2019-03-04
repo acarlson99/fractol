@@ -35,11 +35,11 @@ make
 | +/-        | inc/dec iters                   |
 | Arrow keys | move around                     |
 | Scroll     | zoom in/out                     |
-| \[/\]      | change palette                  |
+| \[ \]      | change palette                  |
 
-![julia_03](screenshots/julia_03.png)
-![julia_07](screenshots/julia_07.png)
-![julia_14](screenshots/julia_14.png)
-![julia_15](screenshots/julia_15.png)
-![multi_julia_00](screenshots/multi_julia_00.png)
-![zoom_00](screenshots/zoom_00.png)
+![julia\_03](screenshots/julia_03.png)
+![julia\_07](screenshots/julia_07.png)
+![julia\_14](screenshots/julia_14.png)
+![julia\_15](screenshots/julia_15.png)
+![multi\_julia\_00](screenshots/multi_julia_00.png)
+![zoom\_00](screenshots/zoom_00.png)
